@@ -3,6 +3,7 @@ package com.irctc.Train.Entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.irctc.Bookings.Entity.Bookings;
 import com.irctc.Route.Entity.Route;
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,7 +22,7 @@ import java.util.List;
 public class Train {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private int number;
@@ -29,5 +30,9 @@ public class Train {
     @OneToMany( mappedBy = "train",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JsonIgnoreProperties({"train"})
     private List<Route> route;
+
+    @OneToMany(mappedBy = "train", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"train"})
+    private List<Bookings> booking;
 
 }

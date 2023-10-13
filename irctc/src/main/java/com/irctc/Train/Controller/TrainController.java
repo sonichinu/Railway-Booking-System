@@ -15,7 +15,7 @@ public class TrainController {
     @Autowired
     private TrainService service;
 
-    @GetMapping("/train/find")
+    @GetMapping("/find/train")
     public List<Train> train(){
         return this.service.getAll();
     }

@@ -6,10 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.irctc.Station.Entity.Station;
 import com.irctc.Train.Entity.Train;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Time;
 
@@ -18,6 +15,7 @@ import java.sql.Time;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
