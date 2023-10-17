@@ -33,5 +33,6 @@ public class Station {
     private List<Bookings> booking;
 
     @OneToMany(mappedBy = "fromstation", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"user","fromstation","tostation"})
     private List<Bookings> booking2;
 }

@@ -30,9 +30,11 @@ public class Bookings {
     private int id;
 
     @ManyToOne(cascade = CascadeType.ALL)
+
     private User user;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"route"})
     private Station fromstation;
 
     @ManyToOne(cascade = CascadeType.ALL)

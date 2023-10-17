@@ -32,7 +32,7 @@ public class Train {
     private List<Route> route;
 
     @OneToMany(mappedBy = "train", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties({"train"})
+    @JsonIgnoreProperties({"train","user","fromstation","tostation"})
     private List<Bookings> booking;
 
 }

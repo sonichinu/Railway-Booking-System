@@ -27,12 +27,12 @@ public class Route {
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.ALL})
     //   @JsonBackReference
-    @JsonIgnoreProperties({"route"})
+    @JsonIgnoreProperties({"route","booking"})
     private Train train;
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.ALL})
     //   @JsonBackReference
-    @JsonIgnoreProperties({"route"})
+    @JsonIgnoreProperties({"route","booking","booking2"})
     private Station station;
 
     private Time arrivalTime;
