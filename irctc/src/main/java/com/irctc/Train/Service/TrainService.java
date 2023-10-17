@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface TrainService {
 
-    List<Train> getAll();
-    List<Train> find(String from, String to);
+    List<Train> getAllTrains();
+    List<Train> getTrainRoutes(String from, String to);
 }

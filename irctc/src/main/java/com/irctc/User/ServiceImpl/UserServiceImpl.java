@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<User> find() {
+    public List<User> getAllUsers() {
         return this.repo.findAll();
     }
 }

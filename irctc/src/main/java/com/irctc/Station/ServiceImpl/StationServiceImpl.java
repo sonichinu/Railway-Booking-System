@@ -14,7 +14,7 @@ public class StationServiceImpl implements StationService {
 private StationRepository repo;
 
     @Override
-    public List<Station> getAll() {
+    public List<Station> getAllStations() {
         return this.repo.findAll();
     }
 }

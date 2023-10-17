@@ -16,13 +16,13 @@ public class TrainController {
     private TrainService service;
 
     @GetMapping("/find/train")
-    public List<Train> train(){
-        return this.service.getAll();
+    public List<Train> getAllTrains(){
+        return this.service.getAllTrains();
     }
 
-    @GetMapping("/train/find/{from}/{to}")
-    public List<Train> find(@PathVariable String to, @PathVariable String from){
+    @GetMapping("/find/train/{from}/{to}")
+    public List<Train> getTrainRoutes(@PathVariable String to, @PathVariable String from){
 //        System.out.println(to + from );
-        return this.service.find(from,to);
+        return this.service.getTrainRoutes(from,to);
     }
 }

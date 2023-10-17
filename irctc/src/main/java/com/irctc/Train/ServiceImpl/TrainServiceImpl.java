@@ -14,12 +14,12 @@ public class TrainServiceImpl implements TrainService {
     @Autowired
     private TrainRepository repo;
     @Override
-    public List<Train> getAll() {
+    public List<Train> getAllTrains() {
         return this.repo.findAll();
     }
 
     @Override
-    public List<Train> find(String from, String to) {
+    public List<Train> getTrainRoutes(String from, String to) {
         System.out.println(from+to);
       //  System.out.println((this.repo.findByRoutes(from,to)).toString());
         return this.repo.findTrainBetweenStation(from,to);

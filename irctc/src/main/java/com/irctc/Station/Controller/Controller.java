@@ -17,8 +17,8 @@ public class Controller {
 //    @PostMapping("/find/{from}/{to}")
 
     @GetMapping("/find/station")
-    public List<Station> station(){
-        return this.service.getAll();
+    public List<Station> getAllStations(){
+        return this.service.getAllStations();
     }
 
 

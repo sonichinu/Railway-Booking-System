@@ -5,5 +5,5 @@ import com.irctc.User.Entity.User;
 import java.util.List;
 
 public interface UserService {
-    List<User> find();
+    List<User> getAllUsers();
 }

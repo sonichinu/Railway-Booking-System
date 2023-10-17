@@ -28,7 +28,7 @@ public class Train {
     private int number;
     private String type;
     @OneToMany( mappedBy = "train",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JsonIgnoreProperties({"train"})
+    @JsonIgnoreProperties({"train","station"})
     private List<Route> route;
 
     @OneToMany(mappedBy = "train", cascade = CascadeType.ALL)
