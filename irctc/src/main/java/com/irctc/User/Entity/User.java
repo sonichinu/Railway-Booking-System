@@ -7,7 +7,10 @@ import com.irctc.Bookings.Entity.Bookings;
 import com.irctc.Employee.Entity.Employee;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -15,13 +18,12 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
-public class User {
+public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
     private String email;
@@ -29,7 +31,7 @@ public class User {
     private String username;
     private String password;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-//    @JsonIgnoreProperties({"user"})
+    @JsonIgnoreProperties({"user"})
     private Employee employee;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -37,4 +39,48 @@ public class User {
     private List<Bookings> booking;
 
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    public String getUsername() {
+        // TODO Auto-generated method stub
+        return this.email;
+    }
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+    @Override
+    public boolean isAccountNonLocked() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+    @Override
+    public boolean isEnabled() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", employee=" + employee +
+                ", booking=" + booking +
+                '}';
+    }
 }

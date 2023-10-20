@@ -17,4 +17,19 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsers() {
         return this.repo.findAll();
     }
+
+    @Override
+    public User getSingleUser(int id) {
+        return this.repo.findById(id).get();
+    }
+
+    @Override
+    public User registerUser(User user) {
+        return this.repo.save(user);
+    }
+
+    @Override
+    public User getSingleUserByEmail(String email) {
+        return this.repo.findUserByEmail(email);
+    }
 }

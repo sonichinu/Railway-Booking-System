@@ -30,17 +30,19 @@ public class Bookings {
     private int id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-
+    @JsonIgnoreProperties({"booking","booking2"})
     private User user;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonIgnoreProperties({"route"})
+    @JsonIgnoreProperties({"route","booking","booking2"})
     private Station fromstation;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"route","booking","booking2"})
     private Station tostation;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"route","booking","bookings"})
     private Train train;
 
     private int amountPaid;
@@ -54,7 +56,7 @@ public class Bookings {
     private Date travelDate;
 
     @OneToMany( mappedBy = "booking",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JsonIgnoreProperties({"booking"})
+    @JsonIgnoreProperties({"booking","bookings"})
     private List<Passengers> passengers;
 
 

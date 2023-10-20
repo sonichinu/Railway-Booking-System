@@ -1,14 +1,24 @@
 package com.irctc;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-public class IrctcApplication {
+public class IrctcApplication implements CommandLineRunner {
+
+	@Autowired
+	PasswordEncoder encode;
 
 	public static void main(String[] args) {
 		SpringApplication.run(IrctcApplication.class, args);
 		System.out.println("Welcome to IRCTC App");
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println(this.encode.encode("123"));
+	}
 }

@@ -24,7 +24,7 @@ public class Passengers {
     private String name;
     private int age;
 
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.ALL})
     //   @JsonBackReference
     @JsonIgnoreProperties({"passengers"})
     private Bookings booking;
