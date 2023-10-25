@@ -1,7 +1,7 @@
 package com.irctc.configuration;
 
-import com.irctc.User.Entity.User;
-import com.irctc.User.Repository.UserRepository;
+import com.irctc.user.entity.User;
+import com.irctc.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
