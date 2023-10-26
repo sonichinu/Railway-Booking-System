@@ -26,16 +26,23 @@
 
             <div class="panel-body" >
 
-                <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+				
+                <form (ngSubmit)="formSubmit()" name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
                    
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input id="user" type="text" class="form-control" name="user" value="" placeholder="Email">                                        
+                        <input 
+							[(ngModel)]="loginData.username"
+							name="username"
+							id="user" type="text" class="form-control" name="user" value="" placeholder="Email">                                        
                     </div>
 
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                        <input
+						[(ngModel)]="loginData.password"
+							name="password"
+						id="password" type="password" class="form-control" name="password" placeholder="Password">
                     </div>                                                                  
 
                     <div class="form-group">

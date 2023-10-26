@@ -14,7 +14,7 @@ export class BackserviceService {
     return this.http.get(`http://localhost:8080/find/train/${fromStation}/${toStation}`)
   }
 
-  registerUser(user:any){
+  registerUser(user:any):Observable<object>{
     console.log("registerUser is called");
     return this.http.post(`http://localhost:8080/register`,user);
   }

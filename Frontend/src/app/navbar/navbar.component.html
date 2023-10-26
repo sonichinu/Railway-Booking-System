@@ -1,22 +1,36 @@
 <p>
     <mat-toolbar color="primary">
       <a
-      routerLink="/"
+      [routerLink]="'/login'"
        mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
     </a>
       <span>My App</span>
       <span class="example-spacer"></span>
       <a 
+        *ngIf="!isLoggedIn"
         [routerLink]="'/login'"
       mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
         Login
     </a>
       <a 
+      *ngIf="!isLoggedIn"
         [routerLink]="'/signup'"
       mat-icon-button class="example-icon favorite-icon " style="margin: 65px;" aria-label="Example icon-button with heart icon">
         Register
     </a>
+
+    <a (click)="logout()"
+    *ngIf="isLoggedIn"
+    mat-icon-button class="example-icon favorite-icon " style="margin: 80px;" aria-label="Example icon-button with heart icon">
+      Logout
+  </a>
+
+  <a 
+    *ngIf="isLoggedIn"
+    mat-icon-button class="example-icon favorite-icon " style="margin: 50px;" aria-label="Example icon-button with heart icon">
+      {{user.name}}
+  </a>
       
     </mat-toolbar>
   </p>

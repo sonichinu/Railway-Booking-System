@@ -16,6 +16,12 @@ import { LoginComponent } from './login/login.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { NavbarComponent } from './navbar/navbar.component';
+import { authInterceptorProviders } from './auth.interceptor';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';
+import {MatListModule} from '@angular/material/list';
+import { SidebarComponent } from './sidebar/sidebar.component';
+
 
 
 
@@ -27,7 +33,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     TrainComponent,
     SignupComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    DashboardComponent,
+    ProfileComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +45,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     FormsModule,
     MatFormFieldModule,
     MatSnackBarModule,
+    MatListModule, 
     MatButtonModule,
     MatInputModule,
     MatCardModule,
@@ -43,7 +53,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatIconModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

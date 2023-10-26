@@ -4,15 +4,12 @@ import com.irctc.bookings.entity.Bookings;
 import com.irctc.bookings.repository.BookingsRepository;
 import com.irctc.bookings.service.BookingService;
 import com.irctc.passengers.entity.Passengers;
-import com.irctc.station.entity.Station;
 import com.irctc.station.service.StationService;
-import com.irctc.train.entity.Train;
 import com.irctc.train.service.TrainService;
-import com.irctc.user.entity.User;
 import com.irctc.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,14 +26,11 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Bookings bookTicket(Bookings book, int fromStation, int toStation, int train_id, int user_id) {
-        Station fromstation = this.stationService.getFromStation(fromStation);
-        Station tostation = this.stationService.getToStation(toStation);
-        Train train = this.trainService.getTrainById(train_id);
-        User user = this.userService.getSingleUser(user_id);
-        book.setFromstation(fromstation);
-        book.setTostation(tostation);
-        book.setTrain(train);
-        book.setUser(user);
+        book.setFromstation(this.stationService.getFromStation(fromStation));
+        book.setTostation(this.stationService.getToStation(toStation));
+        book.setTrain(this.trainService.getTrainById(train_id));
+        book.setUser(this.userService.getSingleUser(user_id));
+        book.setBookingDate(new Date());
         List<Passengers> passengers = book.getPassengers();
         if(book.getNumberOfTickets()>1 || passengers!= null) {
             for (Passengers p : passengers) {
