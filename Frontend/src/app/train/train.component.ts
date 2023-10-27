@@ -11,14 +11,11 @@ export class TrainComponent {
   fromStation: string = "";
   toStation: string = "";
   travelDate: string = "";
-  trainsForRoutes:any;
+  trainsForRoutes:any[]= [
+
+  ];
 
   constructor(private backservice: BackserviceService) {
-  //   this.backservice.getTrainForRoute(this.fromStation,this.toStation).subscribe((data)=>{
-  //   console.warn("data",data);
-  //   this.trainsForRoutes=data;
-  
-  // })
 }
 
 
@@ -28,7 +25,7 @@ export class TrainComponent {
   //  console.log('Travel Date:', this.travelDate);
   this.backservice.getTrainForRoute(this.fromStation, this.toStation)
   .subscribe(
-    response => {
+    (response:any) => {
       // Handle the response from the backend here
       console.log('Response from the backend:', response);
       this.trainsForRoutes=response;
@@ -40,10 +37,9 @@ export class TrainComponent {
   );
  }
 
- bookNow(train:any){
-  console.log(train);
+ bookNow(train:any[]){
+  console.log("bookNow button clicked" +train);
  }
-
 
 }
 

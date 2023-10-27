@@ -21,7 +21,7 @@ public class TrainServiceImpl implements TrainService {
     }
 
     @Override
-    public List<TrainInfoDto> getTrainRoutes(String from, String to) {
+    public List<Object[]> getTrainRoutes(String from, String to) {
         System.out.println(from+to);
 //        System.out.println((this.repo.findTrainBetweenStation(from,to)).toString());
         return this.repo.findTrainBetweenStation(from,to);

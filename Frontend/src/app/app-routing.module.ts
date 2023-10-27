@@ -37,6 +37,10 @@ const routes: Routes = [
       {
         path:'profile',
         component:ProfileComponent
+      },
+      {
+        path:'trainforroutes',
+        component:TrainComponent
       }
     ],
     canActivate:[AuthGuard]

@@ -1,6 +1,6 @@
 <p>train works!</p>
 
-<form (ngSubmit)="onSubmit()">
+ <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="fromStation">From Station</label>
       <input type="text" id="fromStation" name="fromStation" [(ngModel)]="fromStation" class="form-control" placeholder="Enter From Station">
@@ -19,40 +19,58 @@
     <button type="submit" class="btn btn-primary">Search</button>
   </form>
 
-  <ul>
+  <!-- <ul>
     <li *ngFor="let train of trainsForRoutes">
       <div class="train-item">
         <span class="train-name">{{ train.name }}</span>
         <button class="btn btn-primary" (click)="bookNow(train)">Book Now</button>
       </div>
     </li>
-  </ul>
+  </ul> -->
 
 
-
-
-
-  <div class="train-details-container">
-    <mat-card class="train-card">
-      <mat-card-header>
-        <mat-card-title> train.name </mat-card-title>
-        <mat-card-subtitle> train.route </mat-card-subtitle>
-      </mat-card-header>
-  
-      <mat-card-content>
-        <div class="train-info">
-          <p><strong>Departure Time:</strong>  train.departureTime </p>
-          <p><strong>Arrival Time:</strong>  train.arrivalTime </p>
-          <p><strong>Available Seats:</strong>  train.availableSeats </p>
-          <p><strong>Fare:</strong>  train.fare </p>
-        </div>
-      </mat-card-content>
-  
-      <mat-card-actions>
-        <button mat-button color="primary" >Book Ticket</button>
-      </mat-card-actions>
-    </mat-card>
+  <ul>
+    <li *ngFor="let train of trainsForRoutes">
+  <div class="card train-ticket-card " style="display: flex;">
+    <div class="card-header">
+      <h4 class="card-title"> {{train[0]}} </h4>
+      <p class="card-subtitle text-muted"> {{train[1]}} </p>
+    </div>
+    <div class="card-body">
+      <table>
+        <tbody>
+          <tr>
+            <td class="train-ticket-card-label">Departure Station:</td>
+            <td> {{train[6]}} </td>
+          </tr>
+          <tr>
+            <td class="train-ticket-card-label">Arrival Station:</td>
+            <td> {{train[7]}} </td>
+          </tr>
+          <tr>
+            <td class="train-ticket-card-label">Departure Time:</td>
+            <td>{{ train[2] }}</td>
+          </tr>
+          <tr>
+            <td class="train-ticket-card-label">Arrival Time:</td>
+            <td> {{train[4]}} </td>
+          </tr>
+          <tr>
+            <td class="train-ticket-card-label">Duration:</td>
+            <td> {{train[5] - train[3] }}km</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-img-container">
+        <img src=" ../../assets/trainTicketImage.png " alt="Train ticket image">
+      </div>
+    </div>  
+    <div class="card-footer">
+      <a href="#" class="btn btn-primary" (click)="bookNow(train)">Book Now</a>
+    </div>
   </div>
+</li>
+</ul>
   
   
   

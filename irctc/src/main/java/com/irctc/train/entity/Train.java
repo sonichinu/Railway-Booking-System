@@ -39,4 +39,15 @@ public class Train {
     @OneToOne(mappedBy = "train", cascade = CascadeType.ALL)
     private Seats seats;
 
+
+    @Override
+    public String toString() {
+        return "Train{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", number=" + number +
+                ", type='" + type + '\'' +
+                ", route=" + route +
+                '}';
+    }
 }

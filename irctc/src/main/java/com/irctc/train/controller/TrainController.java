@@ -23,8 +23,8 @@ public class TrainController {
     }
 
     @GetMapping("/find/train/{from}/{to}")
-    public ResponseEntity<List<TrainInfoDto>> getTrainRoutes(@PathVariable String to, @PathVariable String from){
-        System.out.println(to + from );
+    public ResponseEntity<List<Object[]>> getTrainRoutes(@PathVariable String to, @PathVariable String from){
+//        System.out.println(to + from );
         return ResponseEntity.ok(this.service.getTrainRoutes(from,to));
     }
 }
