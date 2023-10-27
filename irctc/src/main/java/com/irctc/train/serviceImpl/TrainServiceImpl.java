@@ -1,5 +1,6 @@
 package com.irctc.train.serviceImpl;
 
+import com.irctc.train.dto.TrainInfoDto;
 import com.irctc.train.entity.Train;
 import com.irctc.train.repository.TrainRepository;
 import com.irctc.train.service.TrainService;
@@ -20,9 +21,9 @@ public class TrainServiceImpl implements TrainService {
     }
 
     @Override
-    public List<Train> getTrainRoutes(String from, String to) {
+    public List<TrainInfoDto> getTrainRoutes(String from, String to) {
         System.out.println(from+to);
-      //  System.out.println((this.repo.findByRoutes(from,to)).toString());
+//        System.out.println((this.repo.findTrainBetweenStation(from,to)).toString());
         return this.repo.findTrainBetweenStation(from,to);
     }
 

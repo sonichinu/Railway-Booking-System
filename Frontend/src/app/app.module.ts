@@ -21,6 +21,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import {MatListModule} from '@angular/material/list';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { HomeComponent } from './dashboard/home/home.component';
 
 
 
@@ -36,7 +37,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     NavbarComponent,
     DashboardComponent,
     ProfileComponent,
-    SidebarComponent
+    SidebarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

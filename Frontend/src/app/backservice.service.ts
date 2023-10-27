@@ -11,7 +11,7 @@ export class BackserviceService {
 
   getTrainForRoute(fromStation:string, toStation:string):Observable<object>{
     console.log("Get trainForRoutes is called");
-    return this.http.get(`http://localhost:8080/find/train/${fromStation}/${toStation}`)
+    return this.http.get(`http://localhost:8080/test/find/train/${fromStation}/${toStation}`)
   }
 
   registerUser(user:any):Observable<object>{

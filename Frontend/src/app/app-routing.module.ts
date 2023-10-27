@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './dashboard/profile/profile.component';
+import { HomeComponent } from './dashboard/home/home.component';
 
 const routes: Routes = [
   {
@@ -27,8 +28,12 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    pathMatch: 'full',
+    // pathMatch: 'full',
     children:[
+      {
+        path:'',
+        component:HomeComponent
+      },
       {
         path:'profile',
         component:ProfileComponent

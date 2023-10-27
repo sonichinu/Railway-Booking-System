@@ -1,18 +1,17 @@
 package com.irctc.train.controller;
 
+import com.irctc.train.dto.TrainInfoDto;
 import com.irctc.train.entity.Train;
 import com.irctc.train.service.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
+@RequestMapping("/test")
+@CrossOrigin("*")
 public class TrainController {
 
     @Autowired
@@ -24,8 +23,8 @@ public class TrainController {
     }
 
     @GetMapping("/find/train/{from}/{to}")
-    public ResponseEntity<List<Train>> getTrainRoutes(@PathVariable String to, @PathVariable String from){
-//        System.out.println(to + from );
+    public ResponseEntity<List<TrainInfoDto>> getTrainRoutes(@PathVariable String to, @PathVariable String from){
+        System.out.println(to + from );
         return ResponseEntity.ok(this.service.getTrainRoutes(from,to));
     }
 }
