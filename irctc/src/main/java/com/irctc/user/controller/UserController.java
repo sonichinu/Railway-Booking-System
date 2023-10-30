@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200")
 public class UserController {
     @Autowired
     private UserService service;
@@ -23,12 +23,13 @@ public class UserController {
         return ResponseEntity.ok(service.getAllUsers());
     }
 
-    @GetMapping("/find/user/{id}")
-    public User getSingleUser(@PathVariable int id){
-        return this.service.getSingleUser(id);
-    }
+//    @GetMapping("/find/user/{id}")
+//    public User getSingleUser(@PathVariable int id){
+//        return this.service.getSingleUser(id);
+//    }
 
     @PostMapping("/register")
+    @CrossOrigin("http://localhost:4200")
     public ResponseEntity<ApiResponse> user(@Valid @RequestBody User user){
         this.service.registerUser(user);
         return new ResponseEntity<ApiResponse>(new ApiResponse("user added",true), HttpStatus.OK);

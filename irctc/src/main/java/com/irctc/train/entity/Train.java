@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.irctc.bookings.entity.Bookings;
 import com.irctc.route.entity.Route;
-import com.irctc.seats.entity.Seats;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,8 +35,8 @@ public class Train {
     @JsonIgnoreProperties({"train","user","fromstation","tostation"})
     private List<Bookings> booking;
 
-    @OneToOne(mappedBy = "train", cascade = CascadeType.ALL)
-    private Seats seats;
+//    @OneToOne(mappedBy = "train", cascade = CascadeType.ALL)
+//    private Seats seats;
 
 
     @Override

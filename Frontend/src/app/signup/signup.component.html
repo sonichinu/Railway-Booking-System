@@ -11,7 +11,7 @@
 
                 <h1 class="text-center">Register Here</h1>
 
-                <form (ngSubmit)="formSubmit()">
+                <form >
 
                     <!-- FOR NAME -->
                         <mat-form-field class="full-width" appearance="outline">
@@ -44,8 +44,8 @@
                             <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>   for icons -->
                           </mat-form-field>
                           <div class="container text-align">
-                            <button mat-stroked-button color="primary" >Register</button>
-                            <button mat-stroked-button color="warm" style="margin-left: 20px;" color="warn">Clear</button>
+                            <button mat-stroked-button color="primary" (click)="formSubmit()">Register</button>
+                            <button mat-stroked-button color="warm" style="margin-left: 20px;" color="warn" (click)="clearForm()">Clear</button>
                           </div>
                           
 

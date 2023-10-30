@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule,HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http'
+import {HttpClientModule,HttpClient, HTTP_INTERCEPTORS, HttpRequest} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TrainComponent } from './train/train.component';
@@ -22,6 +22,7 @@ import { ProfileComponent } from './dashboard/profile/profile.component';
 import {MatListModule} from '@angular/material/list';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomeComponent } from './dashboard/home/home.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
 
 
@@ -41,6 +42,12 @@ import { HomeComponent } from './dashboard/home/home.component';
     HomeComponent
   ],
   imports: [
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        // Other configuration options
+      },
+    }),
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -59,3 +66,7 @@ import { HomeComponent } from './dashboard/home/home.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+function tokenGetter(request?: HttpRequest<any> | undefined): string | Promise<string | null> | null {
+  throw new Error('Function not implemented.');
+}
+

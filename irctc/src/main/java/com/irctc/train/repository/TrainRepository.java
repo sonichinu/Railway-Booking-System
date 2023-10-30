@@ -12,7 +12,7 @@ public interface TrainRepository extends JpaRepository<Train, Integer> {
 
 
 
-    @Query("SELECT t.name,t.number, r1.arrivalTime, r1.distance, r2.arrivalTime, r2.distance, s1.name, s2.name " +
+    @Query("SELECT t.id, t.name, t.number , r1.arrivalTime, r1.distance, r2.arrivalTime, r2.distance, s1.id, s1.name, s2.id, s2.name " +
             "FROM Train t " +
             "JOIN Route r1 ON t.id = r1.train.id " +
             "JOIN Station s1 ON r1.station.id = s1.id " +

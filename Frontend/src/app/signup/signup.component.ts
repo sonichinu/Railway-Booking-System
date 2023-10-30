@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BackserviceService } from '../backservice.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2'
 })
 export class SignupComponent {
 
-  constructor(private backservice:BackserviceService, private snack:MatSnackBar){}
+  constructor(private backservice:BackserviceService, private snack:MatSnackBar, private router: Router){}
 
   user = {
     name: '',
@@ -34,7 +35,7 @@ export class SignupComponent {
       (response:any) => {
         // Handle the response from the backend here
         console.log('data inserted successfully:', response);
-        Swal.fire('Sucess','User Registered Sucessfully with User_ID '+response.id,'success');
+        Swal.fire('Sucess','User Registered Sucessfully! ','success');
       },
       error => {
         // Handle any errors here
@@ -45,6 +46,17 @@ export class SignupComponent {
       }
     );
    }
+
+   clearForm() {
+    // this.user = {
+    //   name: '',
+    //   email: '',
+    //   username: '', 
+    //   password:'',
+    //   phone:''
+    // };
+    this.router.navigateByUrl("/signup");
+  }
   
 
 

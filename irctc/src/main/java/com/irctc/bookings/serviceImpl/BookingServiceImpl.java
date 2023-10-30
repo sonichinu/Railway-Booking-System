@@ -25,11 +25,11 @@ public class BookingServiceImpl implements BookingService {
     private UserService userService;
 
     @Override
-    public Bookings bookTicket(Bookings book, int fromStation, int toStation, int train_id, int user_id) {
+    public Bookings bookTicket(Bookings book, int fromStation, int toStation, int train_id, String userEmail) {
         book.setFromstation(this.stationService.getFromStation(fromStation));
         book.setTostation(this.stationService.getToStation(toStation));
         book.setTrain(this.trainService.getTrainById(train_id));
-        book.setUser(this.userService.getSingleUser(user_id));
+        book.setUser(this.userService.getSingleUser(userEmail));
         book.setBookingDate(new Date());
         List<Passengers> passengers = book.getPassengers();
         if(book.getNumberOfTickets()>1 || passengers!= null) {
