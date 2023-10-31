@@ -26,20 +26,25 @@ export class BackserviceService {
 
 
   // *******Book Tickets Here *************************
-  bookTicket(details:any, travelDate:string):Observable<object>{
+  bookTicket(details:any, travelDate:string,passengersArray:any,noOfPassengers:any,seatType:any):Observable<object>{
     console.log("bookTicket  is called");
-    const token:any = localStorage.getItem('token');
-    console.log(token);
-    const decodedToken:any = this.jwtHelper.decodeToken(token);
-    const email = decodedToken.id
-    console.log("email id from token is" +email)
+    // const token:any = localStorage.getItem('token');
+    // console.log(token);
+    // const decodedToken:any = this.jwtHelper.decodeToken(token);
+    // const email = decodedToken.id
+    // console.log("email id from token is" +email)
+
+    const seat = details[2]+' '+seatType;
     
     const jsonTicketDetails = {
       amountPaid : (details[6]-details[4])*1.25,
-      numberOfTickets : 1,
-      seat : "lower f1",
-      travelDate: travelDate
+      numberOfTickets : noOfPassengers,
+      seat : seat,
+      travelDate: travelDate,
+      passengers:passengersArray
     }
+    console.log(jsonTicketDetails);
+    
 
     return this.http.post(`http://localhost:8080/book/${details[7]}/${details[9]}/${details[0]}/a@gmail.com`,jsonTicketDetails);
   }

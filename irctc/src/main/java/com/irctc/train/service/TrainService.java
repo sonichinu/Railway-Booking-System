@@ -1,6 +1,5 @@
 package com.irctc.train.service;
 
-import com.irctc.train.dto.TrainInfoDto;
 import com.irctc.train.entity.Train;
 
 import java.util.List;

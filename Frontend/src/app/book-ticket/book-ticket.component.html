@@ -1,0 +1,107 @@
+<p>book-ticket works!</p>
+
+
+
+<mat-card class="train-card">
+    <mat-card-header>
+      <mat-card-title>{{trainDetails[1]}}</mat-card-title>
+      <mat-card-subtitle> {{trainDetails[2] }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Distance:</strong> {{trainDetails[6]- trainDetails[4] }} km</p>
+      <!-- Add more details here -->
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- Add buttons or actions here -->
+    </mat-card-actions>
+  </mat-card>
+
+
+
+  <div class="form-group">
+    <label>Seating Type:</label>
+    <div>
+        <input
+        type="radio"
+        id="seat"
+        name="seatType"
+        value="seat"
+        [(ngModel)]="selectedSeatType"
+        (change)="onSeatTypeChange('seat')"
+      />
+      Chair Car
+      <input
+        type="radio"
+        id="sleeper"
+        name="seatType"
+        value="sleeper"
+        [(ngModel)]="selectedSeatType"
+        (change)="onSeatTypeChange('sleeper')"
+      />
+      Sleeper
+      <input
+        type="radio"
+        id="firstAC"
+        name="seatType"
+        value="firstAC"
+        [(ngModel)]="selectedSeatType"
+        (change)="onSeatTypeChange('firstAC')"
+      />
+      First AC
+      <input
+        type="radio"
+        id="secondAC"
+        name="seatType"
+        value="secondAC"
+        [(ngModel)]="selectedSeatType"
+        (change)="onSeatTypeChange('secondAC')"
+      />
+      Second AC
+      <input
+        type="radio"
+        id="thirdAC"
+        name="seatType"
+        value="thirdAC"
+        [(ngModel)]="selectedSeatType"
+        (change)="onSeatTypeChange('thirdAC')"
+      />
+      Third AC
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="noOfPassengers">No of Passengers</label>
+    <input type="number" id="noOfPassengers" name="noOfPassengers" [(ngModel)]="noOfPassengers" class="form-control" placeholder="Number of Passengers" (input)="onUse()">
+  </div>
+  
+  <div *ngIf="noOfPassengers > 0">
+    <div *ngFor="let passenger of passengersArray; let i = index">
+      <div class="form-group">
+        <label for="passengerName{{ i }}">Passenger Name </label>
+        <input type="text" id="passengerName{{ i }}" name="passengerName{{ i }}" [(ngModel)]="passengersArray[i].name" class="form-control" placeholder="Enter Passenger Name {{i}}">
+      </div>
+    
+      <div class="form-group">
+        <label for="passengerAge{{ i }}">Passenger Age</label>
+        <input type="number" id="passengerAge{{ i }}" name="passengerAge{{ i }}" [(ngModel)]="passengersArray[i].age" class="form-control" placeholder="Enter Passenger Age {{i}}">
+      </div>
+      <div class="form-group">
+          <label for="passengerGender{{ i }}">Passenger Gender</label>
+          <div class="radio-group">
+              <label>
+                  <input type="radio" id="male{{ i }}" name="passengerGender{{ i }}" [(ngModel)]="passengersArray[i].gender" [value]="'male'"> Male
+                </label>
+                <label>
+                    <input type="radio" id="female{{ i }}" name="passengerGender{{ i }}" [(ngModel)]="passengersArray[i].gender" [value]="'female'"> Female
+                </label>
+                <label>
+                    <input type="radio" id="other{{ i }}" name="passengerGender{{ i }}" [(ngModel)]="passengersArray[i].gender" [value]="'other'"> Other
+                </label>
+            </div>
+        </div>
+    </div>
+
+  
+    <button class="btn btn-primary" (click)="sendDetails()">Send Details</button>
+  </div>

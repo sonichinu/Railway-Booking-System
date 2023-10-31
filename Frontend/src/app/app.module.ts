@@ -23,6 +23,7 @@ import {MatListModule} from '@angular/material/list';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomeComponent } from './dashboard/home/home.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { BookTicketComponent } from './book-ticket/book-ticket.component';
 
 
 
@@ -39,7 +40,8 @@ import { JwtModule } from '@auth0/angular-jwt';
     DashboardComponent,
     ProfileComponent,
     SidebarComponent,
-    HomeComponent
+    HomeComponent,
+    BookTicketComponent
   ],
   imports: [
     JwtModule.forRoot({

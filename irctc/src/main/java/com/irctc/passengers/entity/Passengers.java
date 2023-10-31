@@ -23,6 +23,7 @@ public class Passengers {
     private int id;
     private String name;
     private int age;
+    private String gender;
 
     @ManyToOne(cascade = {CascadeType.ALL})
     @JsonIgnoreProperties({"passengers","user"})

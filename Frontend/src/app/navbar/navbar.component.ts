@@ -11,6 +11,7 @@ export class NavbarComponent implements OnInit {
 
   isLoggedIn= false;
   user:any = null;
+  
 
   ngOnInit():void{
     console.log("onInit is called from navbar ts");

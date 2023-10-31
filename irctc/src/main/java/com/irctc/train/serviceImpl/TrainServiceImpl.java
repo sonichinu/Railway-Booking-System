@@ -1,6 +1,5 @@
 package com.irctc.train.serviceImpl;
 
-import com.irctc.train.dto.TrainInfoDto;
 import com.irctc.train.entity.Train;
 import com.irctc.train.repository.TrainRepository;
 import com.irctc.train.service.TrainService;

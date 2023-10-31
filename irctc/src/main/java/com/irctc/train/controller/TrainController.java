@@ -1,6 +1,5 @@
 package com.irctc.train.controller;
 
-import com.irctc.train.dto.TrainInfoDto;
 import com.irctc.train.entity.Train;
 import com.irctc.train.service.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -23,20 +23,29 @@ public class BookingServiceImpl implements BookingService {
     private TrainService trainService;
     @Autowired
     private UserService userService;
+    private int chairseatCount=0;
+    private int sleeperCount=0;
+    private int thirdAcCount=0;
+    private int secondAcCount=0;
+    private int firstAcCount=0;
 
     @Override
     public Bookings bookTicket(Bookings book, int fromStation, int toStation, int train_id, String userEmail) {
+
+        String seat= book.getSeat();
+        if(seat.contains("sleeper")){
+            String s = seat + String.valueOf(++sleeperCount);
+            book.setSeat(s);
+        }
         book.setFromstation(this.stationService.getFromStation(fromStation));
         book.setTostation(this.stationService.getToStation(toStation));
         book.setTrain(this.trainService.getTrainById(train_id));
         book.setUser(this.userService.getSingleUser(userEmail));
         book.setBookingDate(new Date());
         List<Passengers> passengers = book.getPassengers();
-        if(book.getNumberOfTickets()>1 || passengers!= null) {
             for (Passengers p : passengers) {
                 p.setBooking(book);
             }
-        }
         return this.repo.save(book);
     }
 

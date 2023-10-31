@@ -1,61 +1,23 @@
 <p>train works!</p>
 
- <!-- <form (ngSubmit)="onSubmit()">
+
+    <form (ngSubmit)="onSubmit()">
+
     <div class="form-group">
       <label for="fromStation">From Station</label>
-      <input type="text" id="fromStation" name="fromStation" [(ngModel)]="fromStation" class="form-control" placeholder="Enter From Station">
+      <input type="text" id="fromStation" name="fromStation" [(ngModel)]="fromStation" class="form-control" placeholder="Enter From Station" required>
     </div>
   
     <div class="form-group">
       <label for="toStation">To Station</label>
-      <input type="text" id="toStation" name="toStation" [(ngModel)]="toStation" class="form-control" placeholder="Enter To Station">
+      <input type="text" id="toStation" name="toStation" [(ngModel)]="toStation" class="form-control" placeholder="Enter To Station" required>
     </div>
-
-    <div class="form-group">
-      <label for="toStation">No of Passengers</label>
-      <input type="number" id="toStation" name="toStation" [(ngModel)]="noOfPassengers" class="form-control" placeholder="Number of Passengers ">
-    </div>
+  
+   
   
     <div class="form-group">
       <label for="travelDate">Date</label>
-      <input type="date" id="travelDate" name="travelDate" [(ngModel)]="travelDate" class="form-control">
-    </div>
-  
-    <button type="submit" class="btn btn-primary">Search</button>
-  </form> -->
-
-
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="fromStation">From Station</label>
-      <input type="text" id="fromStation" name="fromStation" [(ngModel)]="fromStation" class="form-control" placeholder="Enter From Station">
-    </div>
-  
-    <div class="form-group">
-      <label for="toStation">To Station</label>
-      <input type="text" id="toStation" name="toStation" [(ngModel)]="toStation" class="form-control" placeholder="Enter To Station">
-    </div>
-  
-    <div class="form-group">
-      <label for="noOfPassengers">No of Passengers</label>
-      <input type="number" id="noOfPassengers" name="noOfPassengers" [(ngModel)]="noOfPassengers" class="form-control" placeholder="Number of Passengers">
-    </div>
-  
-    <div *ngIf="noOfPassengers > 1">
-      <div class="form-group">
-        <label for="passengerName">Passenger Name</label>
-        <input type="text" id="passengerName" name="passengerName" [(ngModel)]="passengerName" class="form-control" placeholder="Enter Passenger Name">
-      </div>
-  
-      <div class="form-group">
-        <label for="passengerAge">Passenger Age</label>
-        <input type="number" id="passengerAge" name="passengerAge" [(ngModel)]="passengerAge" class="form-control" placeholder="Enter Passenger Age">
-      </div>
-    </div>
-  
-    <div class="form-group">
-      <label for="travelDate">Date</label>
-      <input type="date" id="travelDate" name="travelDate" [(ngModel)]="travelDate" class="form-control">
+      <input type="date" id="travelDate" name="travelDate" [(ngModel)]="travelDate" class="form-control" required>
     </div>
   
     <button type="submit" class="btn btn-primary">Search</button>
@@ -90,13 +52,38 @@
             <td> {{train[5]}} </td>
           </tr>
           <tr>
-            <td class="train-ticket-card-label">Duration:</td>
+            <td class="train-ticket-card-label">Distance: </td>
             <td> {{train[6] - train[4] }}km</td>
           </tr>
           <tr>
+            <td class="train-ticket-card-label">Available Chair Car:</td>
+            <td> {{ train[11] | number: '1.0-0' }} </td>
+            <td> {{ (train[6] - train[4]) * 1.1 | number: '1.0-0' }} INR </td>
+          </tr>
+          <tr>
+            <td class="train-ticket-card-label">Available Sleepers:</td>
+            <td> {{train[12]}} </td>
+            <td> {{ (train[6] - train[4]) * 1.25 | number: '1.0-0' }} INR </td>
+          </tr>
+          <tr>
+            <td class="train-ticket-card-label">Available ThirdAc:</td>
+            <td> {{train[13]}} </td>
+            <td> {{ (train[6] - train[4]) * 1.5 | number: '1.0-0' }} INR </td>
+          </tr>
+          <tr>
+            <td class="train-ticket-card-label">Available SecondAc:</td>
+            <td> {{train[14]}} </td>
+            <td> {{ (train[6] - train[4]) * 1.8  | number: '1.0-0' }} INR </td>
+          </tr>
+          <tr>
+            <td class="train-ticket-card-label">Available ThirdAc:</td>
+            <td> {{train[13]}} </td>
+            <td> {{ (train[6] - train[4]) * 2.1 | number: '1.0-0' }} INR </td>
+          </tr>
+          <!-- <tr>
             <td class="train-ticket-card-label">Fare:</td>
             <td> {{(train[6] - train[4]) *1.25  }}INR</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
       <div class="card-img-container">

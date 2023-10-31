@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { HomeComponent } from './dashboard/home/home.component';
+import { BookTicketComponent } from './book-ticket/book-ticket.component';
 
 const routes: Routes = [
   {
@@ -40,7 +41,11 @@ const routes: Routes = [
       },
       {
         path:'trainforroutes',
-        component:TrainComponent
+        component:TrainComponent,
+      },
+      {
+        path:'book-ticket',
+        component:BookTicketComponent
       }
     ],
     canActivate:[AuthGuard]
