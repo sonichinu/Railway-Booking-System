@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -21,9 +22,9 @@ public class TrainController {
         return ResponseEntity.ok(this.service.getAllTrains());
     }
 
-    @GetMapping("/find/train/{from}/{to}")
-    public ResponseEntity<List<Object[]>> getTrainRoutes(@PathVariable String to, @PathVariable String from){
+    @GetMapping("/find/train/{from}/{to}/{travelDate}")
+    public ResponseEntity<List<Object[]>> getTrainRoutes(@PathVariable String to, @PathVariable String from,@PathVariable String travelDate){
 //        System.out.println(to + from );
-        return ResponseEntity.ok(this.service.getTrainRoutes(from,to));
+        return ResponseEntity.ok(this.service.getTrainRoutes(from,to,travelDate));
     }
 }

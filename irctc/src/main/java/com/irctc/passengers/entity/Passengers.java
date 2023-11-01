@@ -24,6 +24,7 @@ public class Passengers {
     private String name;
     private int age;
     private String gender;
+    private String reservedSeat;
 
     @ManyToOne(cascade = {CascadeType.ALL})
     @JsonIgnoreProperties({"passengers","user"})

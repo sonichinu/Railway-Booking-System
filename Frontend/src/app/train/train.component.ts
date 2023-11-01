@@ -34,7 +34,7 @@ export class TrainComponent {
 
   onSubmit() {
     this.backservice
-      .getTrainForRoute(this.fromStation, this.toStation)
+      .getTrainForRoute(this.fromStation, this.toStation,this.travelDate)
       .subscribe(
         (response: any) => {
           // Handle the response from the backend here

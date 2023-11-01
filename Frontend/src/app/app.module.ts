@@ -24,6 +24,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomeComponent } from './dashboard/home/home.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { BookTicketComponent } from './book-ticket/book-ticket.component';
+import { MyTripsComponent } from './my-trips/my-trips.component';
+import {DataTablesModule} from 'angular-datatables';
+import { UpcommingTripsComponent } from './upcomming-trips/upcomming-trips.component';
 
 
 
@@ -41,15 +44,12 @@ import { BookTicketComponent } from './book-ticket/book-ticket.component';
     ProfileComponent,
     SidebarComponent,
     HomeComponent,
-    BookTicketComponent
+    BookTicketComponent,
+    MyTripsComponent,
+    UpcommingTripsComponent
   ],
   imports: [
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        // Other configuration options
-      },
-    }),
+    DataTablesModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -68,7 +68,7 @@ import { BookTicketComponent } from './book-ticket/book-ticket.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-function tokenGetter(request?: HttpRequest<any> | undefined): string | Promise<string | null> | null {
-  throw new Error('Function not implemented.');
-}
+// function tokenGetter(request?: HttpRequest<any> | undefined): string | Promise<string | null> | null {
+//   throw new Error('Function not implemented.');
+// }
 

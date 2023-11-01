@@ -8,6 +8,8 @@ import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { HomeComponent } from './dashboard/home/home.component';
 import { BookTicketComponent } from './book-ticket/book-ticket.component';
+import { MyTripsComponent } from './my-trips/my-trips.component';
+import { UpcommingTripsComponent } from './upcomming-trips/upcomming-trips.component';
 
 const routes: Routes = [
   {
@@ -46,6 +48,14 @@ const routes: Routes = [
       {
         path:'book-ticket',
         component:BookTicketComponent
+      },
+      {
+        path:'my-trips',
+        component:MyTripsComponent
+      },
+      {
+        path:'upcomming-trips',
+        component:UpcommingTripsComponent
       }
     ],
     canActivate:[AuthGuard]

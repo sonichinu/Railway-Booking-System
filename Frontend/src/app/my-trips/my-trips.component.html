@@ -1,0 +1,45 @@
+<p>my-trips works!</p>
+
+
+<div class="container">
+    <div class="card m-5 p-3">
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Train Name</th>
+                    <th>Train Number</th>
+                    <th>Booking Date</th>
+                    <th>Travel Date</th>
+                    <th>From Station</th>
+                    <th>To Station</th>
+                    <th>NumberOfTickets</th>
+                    <th>Seat Type</th>
+                    <th>Amount Paid</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let trip of allTripsOfUsers; let i = index" 
+                [ngClass]="{
+                    'upcoming-trip': isUpcomingTrip(trip[3]),
+                    'completed-trip': !isUpcomingTrip(trip[3])
+                  }">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ trip[0] }}</td>
+                    <td>{{ trip[1] }}</td>
+                    <td>{{ trip[2] }}</td>
+                    <td>{{ trip[3] }}</td>
+                    <td>{{ trip[4] }}</td>
+                    <td>{{ trip[5] }}</td>
+                    <td>{{ trip[6] }}</td>
+                    <td>{{ trip[7] }}</td>
+                    <td>{{ trip[8] }}</td>
+                    
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

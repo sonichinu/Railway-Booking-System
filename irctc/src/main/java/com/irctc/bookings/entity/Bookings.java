@@ -29,25 +29,25 @@ public class Bookings {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnoreProperties({"booking","booking2"})
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnoreProperties({"route","booking","booking2"})
     private Station fromstation;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnoreProperties({"route","booking","booking2"})
     private Station tostation;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnoreProperties({"route","booking","bookings"})
     private Train train;
 
     private int amountPaid;
     private int numberOfTickets;
-    private String seat;
+    private String seatType;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Temporal(TemporalType.DATE)
     private Date bookingDate;
