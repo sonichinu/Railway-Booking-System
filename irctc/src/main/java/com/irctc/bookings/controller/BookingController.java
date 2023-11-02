@@ -44,7 +44,7 @@ public class BookingController {
     }
 
 //******DELETE AN UPCOMMING BOOKING*************************
-    @GetMapping("delete/booking/{bookingId}")
+    @DeleteMapping("delete/booking/{bookingId}")
     public ResponseEntity<ApiResponse> deleteBooking(@PathVariable int bookingId){
         try {
             this.service.deleteBooking(bookingId);

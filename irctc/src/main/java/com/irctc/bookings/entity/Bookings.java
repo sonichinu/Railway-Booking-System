@@ -55,7 +55,7 @@ public class Bookings {
     @Temporal(TemporalType.DATE)
     private Date travelDate;
 
-    @OneToMany( mappedBy = "booking",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @OneToMany( mappedBy = "booking",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.REMOVE})
     @JsonIgnoreProperties({"booking","bookings"})
     private List<Passengers> passengers;
 

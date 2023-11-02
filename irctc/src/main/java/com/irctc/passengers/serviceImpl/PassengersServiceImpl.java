@@ -13,7 +13,7 @@ public class PassengersServiceImpl implements PassengersService {
     @Autowired
     private PassengersRepo repo;
     @Override
-    public List<Passengers> getAllPassengers() {
-        return this.repo.findAll();
+    public List<Passengers> getAllPassengers(int id) {
+        return this.repo.findByBookingId(id);
     }
 }

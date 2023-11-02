@@ -9,12 +9,12 @@ export class DataTransferService {
 
   trainDetails:any;
   travelDate:any;
+  tripOfUser:any=[];
 
 
   setTrainDetails(details: any,travelDate:any) {
     this.trainDetails = details;
     this.travelDate= travelDate;
-
   }
 
   getTrainDetails() {
@@ -23,5 +23,14 @@ export class DataTransferService {
   getTravelDate(){
     return this.travelDate;
   }
+
+  setTrip(tripDetails:any[]){
+    this.tripOfUser=tripDetails;
+  }
+
+  getTrip(){
+    return this.tripOfUser;
+  }
+
 
 }

@@ -30,6 +30,9 @@
                     <td>{{ trip[6] }}</td>
                     <td>{{ trip[7] }}</td>
                     <td>{{ trip[8] }}</td>
+                    <td>
+                        <button mat-stroked-button color="warn" (click)="cancelBooking(trip[9],i)">Cancel</button>
+                    </td>
                     
                 </tr>
                 </tbody>

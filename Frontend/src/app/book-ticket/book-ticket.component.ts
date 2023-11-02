@@ -24,6 +24,14 @@ export class BookTicketComponent {
   passengersArray: { name: string, age: number , gender: string}[] = [];
   onUse() {
     console.log(this.noOfPassengers);
+    if(this.noOfPassengers>6){
+      Swal.fire(
+        'Error',
+        'Only Six Bookings Allowed At a Time ' ,
+        'error'
+      );
+      this.noOfPassengers=6;
+    }
     // Initialize passengersArray with the specified number of passengers
     this.initializePassengersArray();
   }

@@ -1,0 +1,33 @@
+<p>show-booking-details works!</p>
+
+  <div class="card">
+    <div class="card-header">
+      Train Details
+    </div>
+    <div class="card-body">
+      <p class="train-name"><strong>Train Name:</strong>  {{trip[0]}} </p>
+      <p class="train-number"><strong>Train Number:</strong>  {{trip[1]}} </p>
+      <p class="train-number"><strong>From Station:</strong>  {{trip[4]}} </p>
+      <p class="train-number"><strong>Train Number:</strong>  {{trip[5]}} </p>
+      <p class="train-number"><strong>Booking Date:</strong>  {{trip[2]}} </p>
+      <p class="train-number"><strong>Travel Date:</strong>  {{trip[3]}} </p>
+      <!-- Add more train details here -->
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-header">
+      Passenger Details
+    </div>
+    <div class="card-body">
+      <!-- Loop through passengers and display their details -->
+      <div *ngFor="let passenger of passengers">
+        <p><strong>Passenger Name:</strong> {{ passenger.name }}</p>
+        <p><strong>Gender:</strong> {{ passenger.gender }}</p>
+        <p><strong>Age:</strong> {{ passenger.age }}</p>
+        <!-- Add more passenger details here -->
+        <hr> <!-- Add a horizontal line to separate passengers -->
+      </div>
+    </div>
+  </div>

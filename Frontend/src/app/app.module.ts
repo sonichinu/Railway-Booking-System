@@ -27,7 +27,10 @@ import { BookTicketComponent } from './book-ticket/book-ticket.component';
 import { MyTripsComponent } from './my-trips/my-trips.component';
 import {DataTablesModule} from 'angular-datatables';
 import { UpcommingTripsComponent } from './upcomming-trips/upcomming-trips.component';
-
+import { ShowBookingDetailsComponent } from './show-booking-details/show-booking-details.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -46,7 +49,8 @@ import { UpcommingTripsComponent } from './upcomming-trips/upcomming-trips.compo
     HomeComponent,
     BookTicketComponent,
     MyTripsComponent,
-    UpcommingTripsComponent
+    UpcommingTripsComponent,
+    ShowBookingDetailsComponent
   ],
   imports: [
     DataTablesModule,
@@ -62,7 +66,10 @@ import { UpcommingTripsComponent } from './upcomming-trips/upcomming-trips.compo
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

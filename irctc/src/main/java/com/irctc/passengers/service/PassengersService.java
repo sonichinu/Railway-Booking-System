@@ -5,5 +5,5 @@ import com.irctc.passengers.entity.Passengers;
 import java.util.List;
 
 public interface PassengersService {
-    List<Passengers> getAllPassengers();
+    List<Passengers> getAllPassengers(int id);
 }

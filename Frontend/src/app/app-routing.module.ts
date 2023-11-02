@@ -10,6 +10,7 @@ import { HomeComponent } from './dashboard/home/home.component';
 import { BookTicketComponent } from './book-ticket/book-ticket.component';
 import { MyTripsComponent } from './my-trips/my-trips.component';
 import { UpcommingTripsComponent } from './upcomming-trips/upcomming-trips.component';
+import { ShowBookingDetailsComponent } from './show-booking-details/show-booking-details.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
       {
         path:'upcomming-trips',
         component:UpcommingTripsComponent
+      },
+      {
+        path:'show-booking-details',
+        component:ShowBookingDetailsComponent
       }
     ],
     canActivate:[AuthGuard]
