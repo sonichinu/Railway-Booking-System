@@ -40,4 +40,11 @@ public class UserController {
 //        return this.service.getSingleUserByEmail(email);
 //    }
 
+    @PutMapping("/update")
+    @CrossOrigin("http://localhost:4200")
+    public ResponseEntity<ApiResponse> updateUser(@Valid @RequestBody User user){
+        this.service.updateUser(user);
+        return new ResponseEntity<ApiResponse>(new ApiResponse("user updated Successfully",true), HttpStatus.OK);
+    }
+
 }

@@ -38,6 +38,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User updateUser(User user) {
+//        user.setPassword(
+//                getSingleUserByEmail(user.getEmail())
+//                        .getPassword()
+//        );
+//        this.repo.find
+        return this.repo.save(user);
+    }
+
+    @Override
     public User getSingleUserByEmail(String email) {
         User user = this.repo.findUserByEmail(email);
         if(user == null){

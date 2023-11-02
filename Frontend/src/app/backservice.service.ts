@@ -126,6 +126,12 @@ export class BackserviceService {
     return this.http.get(`http://localhost:8080/find/passengers/${id}`)
   }
 
+  // *******Update USerApi ********************
+  updateUser(user:any):Observable<object>{
+    console.log("updateUser is called",user);
+    return this.http.put(`http://localhost:8080/update`,user);
+  }
+
 
 
 }

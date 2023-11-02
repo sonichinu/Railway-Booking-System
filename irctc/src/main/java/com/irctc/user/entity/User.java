@@ -29,7 +29,7 @@ public class User implements UserDetails {
     private String name;
     private String email;
     private String phone;
-    private String username;
+    private String usersname;
     private String password;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"user"})
@@ -78,7 +78,7 @@ public class User implements UserDetails {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", username='" + username + '\'' +
+                ", usersname='" + usersname + '\'' +
                 ", password='" + password + '\'' +
 //                ", employee=" + employee +
 //                ", booking=" + booking +

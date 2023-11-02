@@ -18,7 +18,7 @@ export class SignupComponent {
     email: '',
     password: '',
     phone: '',
-    username: ''
+    usersname: ''
   };
 
   formSubmit() {

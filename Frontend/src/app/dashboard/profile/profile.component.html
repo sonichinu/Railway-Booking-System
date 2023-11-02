@@ -66,6 +66,24 @@
               <table class="table table-striped">
                 <tbody>
                   <tr>
+                    <td><b>Your Email</b></td>
+                    <td>
+                      <!-- Display user's email, or an input field for editing -->
+                      <ng-container *ngIf="!editEmail; else editEmailField">
+                        {{ user.email }}
+                        <!-- <button mat-icon-button (click)="editEmail = true">
+                          <mat-icon>edit</mat-icon>
+                        </button> -->
+                      </ng-container>
+                      <ng-template #editEmailField>
+                        <input type="text" name="email" [(ngModel)]="user.email" required>
+                        <button mat-icon-button (click)="editEmail = false">
+                          <mat-icon>check</mat-icon>
+                        </button>
+                      </ng-template>
+                    </td>
+                  </tr>
+                  <tr>
                     <td><b>Your Name</b></td>
                     <td>
                       <!-- Display user's email, or an input field for editing -->
@@ -84,31 +102,13 @@
                     </td>
                   </tr>
 
-                  <tr>
-                    <td><b>Your Email</b></td>
-                    <td>
-                      <!-- Display user's email, or an input field for editing -->
-                      <ng-container *ngIf="!editEmail; else editEmailField">
-                        {{ user.email }}
-                        <button mat-icon-button (click)="editEmail = true">
-                          <mat-icon>edit</mat-icon>
-                        </button>
-                      </ng-container>
-                      <ng-template #editEmailField>
-                        <input type="text" name="email" [(ngModel)]="user.email" required>
-                        <button mat-icon-button (click)="editEmail = false">
-                          <mat-icon>check</mat-icon>
-                        </button>
-                      </ng-template>
-                    </td>
-                  </tr>
 
                   <tr>
                     <td><b>Your Username</b></td>
                     <td>
                       <!-- Display user's email, or an input field for editing -->
                       <ng-container *ngIf="!editUsername; else editUsernameField">
-                        {{ user.username }}
+                        {{ user.usersname }}
                         <button mat-icon-button (click)="editUsername = true">
                           <mat-icon>edit</mat-icon>
                         </button>

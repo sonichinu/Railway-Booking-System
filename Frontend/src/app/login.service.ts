@@ -56,6 +56,8 @@ export class LoginService {
 
   //*************setUser in ls */
   public setUser(user:any){
+    console.log("this is user befor storing in local storage", JSON.stringify(user));
+    
     localStorage.setItem("user", JSON.stringify(user));
   }
 
