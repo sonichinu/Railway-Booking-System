@@ -69,6 +69,7 @@ export class BackserviceService {
       passengers:passengersArray
     }
     console.log(jsonTicketDetails);
+    
     return this.http.post(`http://localhost:8080/book/${details[7]}/${details[9]}/${details[0]}/${email}`,jsonTicketDetails);
   }
 

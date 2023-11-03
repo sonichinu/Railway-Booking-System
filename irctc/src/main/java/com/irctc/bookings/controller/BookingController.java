@@ -3,11 +3,14 @@ package com.irctc.bookings.controller;
 import com.irctc.bookings.entity.Bookings;
 import com.irctc.bookings.service.BookingService;
 import com.irctc.exception.ApiResponse;
+import com.itextpdf.text.DocumentException;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -19,7 +22,7 @@ public class BookingController {
 //********GET TRAIN DETAILS FOR A PARTICULAR ROUTE************************************
     @PostMapping("/book/{fromStation}/{toStation}/{train_id}/{userEmail}")
     @CrossOrigin("http://localhost:4200")
-    public ResponseEntity<ApiResponse> bookTicket(@RequestBody Bookings booking, @PathVariable int fromStation, @PathVariable int toStation, @PathVariable int train_id, @PathVariable String userEmail){
+    public ResponseEntity<ApiResponse> bookTicket(@RequestBody Bookings booking, @PathVariable int fromStation, @PathVariable int toStation, @PathVariable int train_id, @PathVariable String userEmail) throws MessagingException, DocumentException, IOException {
         this.service.bookTicket(booking,fromStation,toStation,train_id,userEmail);
         return new ResponseEntity<ApiResponse>(new ApiResponse("Booking Done Successfully",true), HttpStatus.OK);
     }
