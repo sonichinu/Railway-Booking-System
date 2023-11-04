@@ -9,6 +9,6 @@ public interface UserService {
     User getSingleUser(String userEmail);
     User registerUser(User user);
     User updateUser(User user);
-//    User getSingleUserByEmail(String email);
+    User getSingleUserByEmail(String email);
 
 }
