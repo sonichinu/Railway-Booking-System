@@ -48,7 +48,7 @@ public class Train {
                 ", name='" + name + '\'' +
                 ", number=" + number +
                 ", type='" + type + '\'' +
-                ", route=" + route +
+//                ", route=" + route +
                 '}';
     }
 }

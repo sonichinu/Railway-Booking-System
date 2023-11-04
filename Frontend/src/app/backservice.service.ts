@@ -41,7 +41,7 @@ export class BackserviceService {
     } else {
       console.log("Token not found in localStorage");
     }
-    
+
     console.log(seatType);
     var amount:number=0;
     if(seatType=="seat"){
@@ -70,7 +70,7 @@ export class BackserviceService {
     }
     console.log(jsonTicketDetails);
     
-    return this.http.post(`http://localhost:8080/book/${details[7]}/${details[9]}/${details[0]}/${email}`,jsonTicketDetails);
+    return this.http.post(`http://localhost:8080/book/${details[7]}/${details[9]}/${details[0]}/${email}/${details[3]}/${details[5]}`,jsonTicketDetails);
   }
 
 

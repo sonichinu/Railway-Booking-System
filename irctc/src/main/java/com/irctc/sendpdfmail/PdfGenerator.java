@@ -2,6 +2,7 @@ package com.irctc.sendpdfmail;
 
 import com.irctc.bookings.entity.Bookings;
 import com.irctc.dto.TicketDetailsDto;
+import com.irctc.passengers.entity.Passengers;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -21,7 +22,7 @@ public class PdfGenerator {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String date = format.format(new Date());
 
-        String filePath = "/home/anurag/"+date+".pdf";
+        String filePath = "/home/rohit/"+date+".pdf";
         System.out.println(filePath);
         PdfWriter.getInstance(document, new FileOutputStream(filePath));
         document.open();
@@ -36,7 +37,7 @@ public class PdfGenerator {
         space.setAlignment(Paragraph.ALIGN_LEFT);
         document.add(space);
 
-        Paragraph paragraph2 = new Paragraph("Your Upcomming Trip Details are as follow: ");
+        Paragraph paragraph2 = new Paragraph("Hey "+data.getUserName() +" Your Upcomming Trip Details are as follow: ");
         space.setAlignment(Paragraph.ALIGN_LEFT);
         document.add(paragraph2);
 
@@ -44,13 +45,53 @@ public class PdfGenerator {
 
         PdfPTable table = new PdfPTable(2);
         table.addCell("Train Name");
-        table.addCell("123456");
+        table.addCell(data.getTrainName());
+
+        table.addCell("Train Number");
+        table.addCell(String.valueOf(data.getTrainNumber()));
+
+        table.addCell("No Of Traveller");
+        table.addCell(String.valueOf(data.getNoOfPassengers()));
+
+        table.addCell("Book Date");
+        table.addCell(date);
+
+        table.addCell("Travel Date");
+        table.addCell(String.valueOf(data.getTravelDate()));
 
 
+        table.addCell("From Station");
+        table.addCell(data.getFromStation());
 
+        table.addCell("From Arrival TIme");
+        table.addCell(data.getFromStationArrivalTIme()+" {24 Hour Format}");
 
+        table.addCell("To Station");
+        table.addCell(data.getToStation());
+
+        table.addCell("To Arrival Time");
+        table.addCell(data.getToStationArrivalTIme()+" {24 Hour Format}");
+
+        table.addCell("Amount Paid");
+        table.addCell(String.valueOf(data.getAmountPaid())+" INR");
+
+        for(Passengers p : data.getPlist()){
+            table.addCell("Passenger name");
+            table.addCell(p.getName());
+            table.addCell("Seat Number");
+            table.addCell(p.getReservedSeat());
+        }
 
         document.add(table);
+
+        Paragraph paragraph3 = new Paragraph("From Your WellWisher");
+        space.setAlignment(Paragraph.ALIGN_LEFT);
+        document.add(paragraph3);
+
+        Paragraph paragraph4 = new Paragraph("Rohit Soni");
+        space.setAlignment(Paragraph.ALIGN_LEFT);
+        document.add(paragraph4);
+
         document.close();
         System.out.println("generated Succefullyt");
 

@@ -16,11 +16,14 @@ import java.util.List;
 public class TicketDetailsDto {
     private String userName;
     private String trainName;
+    private int trainNumber;
     private String fromStation;
     private String toStation;
     private int amountPaid;
     private int noOfPassengers;
     private List<Passengers> plist;
-    private Date travelDate;
+    private String travelDate;
+    private String fromStationArrivalTIme;
+    private String toStationArrivalTIme;
 
 }

@@ -47,14 +47,14 @@ public class UserServiceImpl implements UserService {
         return this.repo.save(user);
     }
 
-    @Override
-    public User getSingleUserByEmail(String email) {
-        User user = this.repo.findUserByEmail(email);
-        if(user == null){
-            throw new ApiException("user not found");
-        }
-        else{
-            return user;
-        }
-    }
+//    @Override
+//    public User getSingleUserByEmail(String email) {
+//        User user = this.repo.findUserByEmail(email);
+//        if(user == null){
+//            throw new ApiException("user not found");
+//        }
+//        else{
+//            return user;
+//        }
+//    }
 }

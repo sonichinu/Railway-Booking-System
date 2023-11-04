@@ -27,5 +27,6 @@ public class Employee {
     private User user;
     private String designation;
     private Date hireDate;
+    private String role;
 
 }

@@ -20,10 +20,10 @@ public class BookingController {
     private BookingService service;
 
 //********GET TRAIN DETAILS FOR A PARTICULAR ROUTE************************************
-    @PostMapping("/book/{fromStation}/{toStation}/{train_id}/{userEmail}")
+    @PostMapping("/book/{fromStation}/{toStation}/{train_id}/{userEmail}/{fromArrivalTime}/{toArrivalTime}")
     @CrossOrigin("http://localhost:4200")
-    public ResponseEntity<ApiResponse> bookTicket(@RequestBody Bookings booking, @PathVariable int fromStation, @PathVariable int toStation, @PathVariable int train_id, @PathVariable String userEmail) throws MessagingException, DocumentException, IOException {
-        this.service.bookTicket(booking,fromStation,toStation,train_id,userEmail);
+    public ResponseEntity<ApiResponse> bookTicket(@RequestBody Bookings booking, @PathVariable int fromStation, @PathVariable int toStation, @PathVariable int train_id, @PathVariable String userEmail, @PathVariable String fromArrivalTime, @PathVariable String toArrivalTime) throws MessagingException, DocumentException, IOException {
+        this.service.bookTicket(booking,fromStation,toStation,train_id,userEmail,fromArrivalTime,toArrivalTime);
         return new ResponseEntity<ApiResponse>(new ApiResponse("Booking Done Successfully",true), HttpStatus.OK);
     }
 

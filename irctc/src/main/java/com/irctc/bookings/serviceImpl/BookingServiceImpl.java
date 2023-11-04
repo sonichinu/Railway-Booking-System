@@ -47,7 +47,7 @@ public class BookingServiceImpl implements BookingService {
     private int firstAcCount=0;
 
     @Override
-    public Bookings bookTicket(Bookings book, int fromStation, int toStation, int train_id, String userEmail) throws DocumentException, IOException, MessagingException {
+    public Bookings bookTicket(Bookings book, int fromStation, int toStation, int train_id, String userEmail, String fromArrivalTime, String toArrivalTime) throws DocumentException, IOException, MessagingException {
         String seat= book.getSeatType();
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String date = format.format(new Date());
@@ -89,14 +89,17 @@ public class BookingServiceImpl implements BookingService {
             dto.setFromStation(fromstation.getName());
             dto.setToStation(tostation.getName());
             dto.setTrainName(train.getName());
-            dto.setTravelDate(book.getTravelDate());
+            dto.setTravelDate(format.format(book.getTravelDate()));
             dto.setNoOfPassengers(book.getNumberOfTickets());
+            dto.setTrainNumber(train.getNumber());
             dto.setPlist(passengers);
+            dto.setFromStationArrivalTIme(fromArrivalTime);
+            dto.setToStationArrivalTIme(toArrivalTime);
             this.pdfGenerator.generateTicketPDF(dto);
-            this.emailService.sendEmail("rohit.chinu.soni@gmail.com",
+            this.emailService.sendEmail(userEmail,
                     "Your Booking Details",
                     "Please refer with your booking details",
-                    "/home/anurag/"+date+".pdf");
+                    "/home/rohit/"+date+".pdf");
         return this.repo.save(book);
     }
 
@@ -128,5 +131,6 @@ public class BookingServiceImpl implements BookingService {
     public void deleteBooking(int id) {
         this.repo.delete(this.repo.findById(id).orElseThrow(()-> new ApiException("Booking not found")));
     }
+
 
 }

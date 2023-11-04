@@ -15,7 +15,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
@@ -35,4 +34,12 @@ public class Station {
     @OneToMany(mappedBy = "fromstation", cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"user","fromstation","tostation"})
     private List<Bookings> booking2;
+
+    @Override
+    public String toString() {
+        return "Station{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

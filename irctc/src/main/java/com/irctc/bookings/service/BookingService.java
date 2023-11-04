@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface BookingService {
-    Bookings bookTicket(Bookings book, int fromStation, int toStation, int train_id, String userEmail) throws DocumentException, IOException, MessagingException;
+    Bookings bookTicket(Bookings book, int fromStation, int toStation, int train_id, String userEmail, String fromArrivalTime, String toArrivalTime) throws DocumentException, IOException, MessagingException;
     List<Bookings> getAllBookings();
 //    Bookings passengerbooking(Bookings book, int fromStation, int toStation, int train_id, int user_id);
 
