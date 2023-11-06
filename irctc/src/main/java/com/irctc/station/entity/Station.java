@@ -24,14 +24,14 @@ public class Station {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany( mappedBy = "station",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @OneToMany( mappedBy = "station",cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"station"})
     private List<Route> route;
 
-    @OneToMany(mappedBy = "tostation", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tostation", cascade = {CascadeType.REFRESH, CascadeType.PERSIST,CascadeType.MERGE})
     private List<Bookings> booking;
 
-    @OneToMany(mappedBy = "fromstation", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "fromstation", cascade = {CascadeType.REFRESH, CascadeType.PERSIST,CascadeType.MERGE})
     @JsonIgnoreProperties({"user","fromstation","tostation"})
     private List<Bookings> booking2;
 

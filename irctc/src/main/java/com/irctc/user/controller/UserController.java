@@ -23,16 +23,16 @@ public class UserController {
         return ResponseEntity.ok(service.getAllUsers());
     }
 
-//    @GetMapping("/find/user/{id}")
-//    public User getSingleUser(@PathVariable int id){
-//        return this.service.getSingleUser(id);
-//    }
+    @GetMapping("/find/user/{email}")
+    public User getSingleUser(@PathVariable String email){
+        return this.service.getSingleUser(email);
+    }
 
     @PostMapping("/register")
     @CrossOrigin("http://localhost:4200")
     public ResponseEntity<ApiResponse> user(@Valid @RequestBody User user){
-        this.service.registerUser(user);
-        return new ResponseEntity<ApiResponse>(new ApiResponse("user added",true), HttpStatus.OK);
+        User savedUser = this.service.registerUser(user);
+        return new ResponseEntity<ApiResponse>(new ApiResponse("user added",true, savedUser.getId()), HttpStatus.OK);
     }
 
 //    @GetMapping("/find/user/{email}")
@@ -45,6 +45,12 @@ public class UserController {
     public ResponseEntity<ApiResponse> updateUser(@Valid @RequestBody User user){
         this.service.updateUser(user);
         return new ResponseEntity<ApiResponse>(new ApiResponse("user updated Successfully",true), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/user/{email}")
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable String email){
+        this.service.deleteUserByEmail(email);
+        return new ResponseEntity<ApiResponse>(new ApiResponse("user Deleted Sucessfully ",true, email), HttpStatus.OK);
     }
 
 }

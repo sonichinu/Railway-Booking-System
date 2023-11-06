@@ -12,7 +12,14 @@ public class GlobalException {
     public ResponseEntity<ApiResponse> apiException(ApiException ex)
     {
         String message = ex.getMessage();
-        ApiResponse apiResponse= new ApiResponse(message, false);
+        ApiResponse apiResponse;
+        if(ex.getId()!=0){
+             apiResponse= new ApiResponse(message, false, ex.getId());
+        }
+        else{
+             apiResponse= new ApiResponse(message, false, ex.getField());
+        }
+
         return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.NOT_FOUND);
     }
 }

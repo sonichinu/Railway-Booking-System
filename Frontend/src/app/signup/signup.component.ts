@@ -35,7 +35,7 @@ export class SignupComponent {
       (response:any) => {
         // Handle the response from the backend here
         console.log('data inserted successfully:', response);
-        Swal.fire('Sucess','User Registered Sucessfully! ','success');
+        Swal.fire('Sucess','User Registered Sucessfully with userID '+ response.id ,'success');
       },
       error => {
         // Handle any errors here
@@ -45,6 +45,7 @@ export class SignupComponent {
         });
       }
     );
+    this.router.navigateByUrl('/login');
    }
 
    clearForm() {

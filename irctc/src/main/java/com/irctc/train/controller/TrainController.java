@@ -27,4 +27,9 @@ public class TrainController {
 //        System.out.println(to + from );
         return ResponseEntity.ok(this.service.getTrainRoutes(from,to,travelDate));
     }
+
+    @GetMapping("/find/train/{id}")
+    public ResponseEntity<Train> getTrainByID(@PathVariable int id){
+        return ResponseEntity.ok(this.service.getTrainById(id));
+    }
 }

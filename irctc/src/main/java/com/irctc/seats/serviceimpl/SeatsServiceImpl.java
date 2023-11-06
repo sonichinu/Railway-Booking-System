@@ -1,5 +1,6 @@
 package com.irctc.seats.serviceimpl;
 
+import com.irctc.exception.ApiException;
 import com.irctc.seats.entity.Seats;
 import com.irctc.seats.repository.SeatsRepository;
 import com.irctc.seats.service.SeatsService;
@@ -20,6 +21,6 @@ public class SeatsServiceImpl implements SeatsService{
 
     @Override
     public Seats getSingleSeat(int id) {
-        return this.repo.findById(id).get();
+        return this.repo.findById(id).orElseThrow(()-> new ApiException("Seats not found with seatId ",id));
     }
 }

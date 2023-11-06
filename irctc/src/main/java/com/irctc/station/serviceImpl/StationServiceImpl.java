@@ -21,11 +21,11 @@ private StationRepository repo;
 
     @Override
     public Station getFromStation(int fromStation) {
-        return this.repo.findById(fromStation).orElseThrow(()->new ApiException("from station not found"));
+        return this.repo.findById(fromStation).orElseThrow(()->new ApiException("from station not found with id ",fromStation));
     }
 
     @Override
     public Station getToStation(int toStation) {
-        return this.repo.findById(toStation).orElseThrow(()->new ApiException("to station not found"));
+        return this.repo.findById(toStation).orElseThrow(()->new ApiException("to station not found with id ",toStation));
     }
 }

@@ -107,15 +107,15 @@
                     <td><b>Your Username</b></td>
                     <td>
                       <!-- Display user's email, or an input field for editing -->
-                      <ng-container *ngIf="!editUsername; else editUsernameField">
+                      <ng-container *ngIf="!editUsersname; else editUsersnameField">
                         {{ user.usersname }}
-                        <button mat-icon-button (click)="editUsername = true">
+                        <button mat-icon-button (click)="editUsersname = true">
                           <mat-icon>edit</mat-icon>
                         </button>
                       </ng-container>
-                      <ng-template #editUsernameField>
-                        <input type="text" name="username" [(ngModel)]="user.usersname" required>
-                        <button mat-icon-button (click)="editUsername = false">
+                      <ng-template #editUsersnameField>
+                        <input type="text" name="usersname" [(ngModel)]="user.usersname" required>
+                        <button mat-icon-button (click)="editUsersname = false">
                           <mat-icon>check</mat-icon>
                         </button>
                       </ng-template>

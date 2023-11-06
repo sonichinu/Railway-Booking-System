@@ -48,6 +48,7 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 ;
 		httpSecurity.addFilterBefore(this.filter, UsernamePasswordAuthenticationFilter.class);
+//		httpSecurity.addFilterAfter(this.filter, UsernamePasswordAuthenticationFilter.class);
 
 		return httpSecurity.build();
 

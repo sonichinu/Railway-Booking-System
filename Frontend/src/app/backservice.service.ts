@@ -70,7 +70,7 @@ export class BackserviceService {
     }
     console.log(jsonTicketDetails);
     
-    return this.http.post(`http://localhost:8080/book/${details[7]}/${details[9]}/${details[0]}/${email}/${details[3]}/${details[5]}`,jsonTicketDetails);
+    return this.http.post(`http://localhost:8080/book/${details[7]}/${details[9]}/${details[0]}/${email}/${details[3]}/${details[5]}  `,jsonTicketDetails);
   }
 
 
@@ -130,7 +130,17 @@ export class BackserviceService {
   // *******Update USerApi ********************
   updateUser(user:any):Observable<object>{
     console.log("updateUser is called",user);
-    return this.http.put(`http://localhost:8080/update`,user);
+    const userJson ={
+      id: user.id,
+      name:user.name,
+      phone:user.phone,
+      usersname:user.usersname,
+      password:user.password,
+      email:user.email
+    }
+    console.log("userjosn is ",userJson);
+    
+    return this.http.put(`http://localhost:8080/update`,userJson);
   }
 
 

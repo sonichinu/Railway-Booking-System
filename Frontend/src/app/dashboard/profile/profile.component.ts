@@ -16,7 +16,20 @@ export class ProfileComponent implements OnInit{
   constructor(private login:LoginService,private backService:BackserviceService, private snack:MatSnackBar){}
 
   ngOnInit(): void {
-    this.user= this.login.getUser();
+    this.user= this.login.getCurrentUSer().subscribe(
+      (response:any) => {
+        // Handle the response from the backend here
+        console.log('User Fetched from backend api successfully:', response);
+        this.user= response;
+      },
+      error => {
+        // Handle any errors here
+        console.error('Error is:', error);
+        this.snack.open('Something went wrong!!', '',{
+          duration:3000,
+        });
+      }
+    );
     console.log("user from profile is ", this.user);
     
   }
@@ -24,7 +37,7 @@ export class ProfileComponent implements OnInit{
   editEmail: boolean = false; // Flag to toggle email editing mode
   editPhone: boolean = false;
   editName: boolean = false;
-  editUsername: boolean = false;
+  editUsersname: boolean = false;
   
 
   onUpdateProfile(): void {
@@ -41,7 +54,7 @@ export class ProfileComponent implements OnInit{
       },
       error => {
         // Handle any errors here
-        console.error('Error:', error);
+        console.error('Error is:', error);
         this.snack.open('Something went wrong!!', '',{
           duration:3000,
         });
@@ -52,7 +65,7 @@ export class ProfileComponent implements OnInit{
     this.editEmail = false;
     this.editName = false;
     this.editPhone = false;
-    this.editUsername = false;
+    this.editUsersname = false;
   }
 
 }

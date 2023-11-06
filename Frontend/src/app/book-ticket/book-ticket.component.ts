@@ -49,7 +49,7 @@ export class BookTicketComponent {
         console.log('data inserted successfully:', response);
         Swal.fire(
           'Sucess',
-          'Ticket Booked  Sucessfully with User_ID ' + response.id,
+          'Ticket Booked  Sucessfully with Booking_ID ' + response.id,
           'success'
         );
       },

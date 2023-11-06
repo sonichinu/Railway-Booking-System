@@ -96,10 +96,10 @@ public class BookingServiceImpl implements BookingService {
             dto.setFromStationArrivalTIme(fromArrivalTime);
             dto.setToStationArrivalTIme(toArrivalTime);
             this.pdfGenerator.generateTicketPDF(dto);
-            this.emailService.sendEmail(userEmail,
-                    "Your Booking Details",
-                    "Please refer with your booking details",
-                    "/home/rohit/"+date+".pdf");
+//            this.emailService.sendEmail(userEmail,
+//                    "Your Booking Details",
+//                    "Please refer with your booking details",
+//                    "/home/rohit/"+date+".pdf");
         return this.repo.save(book);
     }
 

@@ -30,9 +30,7 @@ public class TrainServiceImpl implements TrainService {
     @Override
     public List<Object[]> getTrainRoutes(String from, String to, String travelDate) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println(from+to);
         List<Object[]> responseFromBackend = this.repo.findTrainBetweenStation(from,to);
-        int trainId=0;
         for(Object[] row : responseFromBackend){
             try {
                 Date date = dateFormat.parse(travelDate);
@@ -50,6 +48,6 @@ public class TrainServiceImpl implements TrainService {
 
     @Override
     public Train getTrainById(int trainId) {
-        return this.repo.findById(trainId).orElseThrow(()->new ApiException("train not found"));
+        return this.repo.findById(trainId).orElseThrow(()->new ApiException("train not found with TrainID ",trainId));
     }
 }

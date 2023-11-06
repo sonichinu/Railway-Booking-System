@@ -27,7 +27,6 @@ public class AuthController {
 	private CustomUserDetailsService service;
 	@Autowired
 	private AuthenticationManager manager;
-	public String password;
 
 	@GetMapping("/get-current-user")
 	public User user(Principal principal){
@@ -37,7 +36,6 @@ public class AuthController {
 	@PostMapping("/login")
 	public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest request)
 	{
-		this.password = request.getPassword();
 		UserDetails userDetails = this.service.loadUserByUsername(request.getUsername());
 		this.authenticate(request.getUsername(), request.getPassword());
 		String generateToken = this.helper.generateToken(userDetails);

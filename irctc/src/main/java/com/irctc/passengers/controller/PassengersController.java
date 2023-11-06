@@ -17,7 +17,6 @@ public class PassengersController {
 
     @GetMapping("/find/passengers/{bookingId}")
     public ResponseEntity<List<Passengers>> getAllPassengersOfBooking(@PathVariable int bookingId){
-        System.out.println("11111111111111" + bookingId);
         return ResponseEntity.ok(this.service.getAllPassengers(bookingId));
     }
 }

@@ -16,24 +16,15 @@ public class CustomUserDetailsService implements UserDetailsService{
 	
 	@Autowired
 	private UserRepository userRepo;
-	
-	public String password;
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		System.out.println("password for load user  " +this.password);
 		User user = this.userRepo.findUserByEmail(username);
 		if(user==null){
 			throw new ApiException("user not found");
 		}
-		return user;
+			return user;
 	}
 
 }

@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     public User getSingleUser(String userEmail) {
         User user = this.repo.findUserByEmail(userEmail);
         if(user== null){
-            throw new ApiException("user not found");
+            throw new ApiException("user not found with user email ",userEmail);
         }
         return user;
     }
@@ -39,11 +39,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user) {
-//        user.setPassword(
-//                getSingleUserByEmail(user.getEmail())
-//                        .getPassword()
-//        );
-//        this.repo.find
         return this.repo.save(user);
     }
 
@@ -51,10 +46,21 @@ public class UserServiceImpl implements UserService {
     public User getSingleUserByEmail(String email) {
         User user = this.repo.findUserByEmail(email);
         if(user == null){
-            throw new ApiException("user not found");
+            throw new ApiException("user not found with user email ",email);
         }
         else{
             return user;
+        }
+    }
+
+    @Override
+    public void deleteUserByEmail(String email) {
+        User userToBeDeleted = this.repo.findUserByEmail(email);
+        if(userToBeDeleted== null){
+            throw new ApiException("User not found with ",email);
+        }
+        else{
+            this.repo.delete(userToBeDeleted);
         }
     }
 }
