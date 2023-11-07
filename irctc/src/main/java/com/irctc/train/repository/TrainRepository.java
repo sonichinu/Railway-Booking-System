@@ -27,4 +27,7 @@ public interface TrainRepository extends JpaRepository<Train, Integer> {
             "WHERE r1.distance < r2.distance AND s1.name = :from AND s2.name = :to")
 
     List<Object[]> findTrainBetweenStation(String from, String to);
+
+    @Query("SELECT t.id, t.name, t.number, t.type FROM Train t")
+    List<Object[]> getOnlyTrainData();
 }

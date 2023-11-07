@@ -143,6 +143,23 @@ export class BackserviceService {
     return this.http.put(`http://localhost:8080/update`,userJson);
   }
 
+   //**GEt USERS  FOR ADMIN PAnnel**** */
+   getUserList(){
+    console.log("inside getUserList from backservice");
+    return this.http.get(`http://localhost:8080/find/users/find-only-users`);
+  }
 
+
+  //**GEt Trains  FOR ADMIN PAnnel**** */
+  getTrainsList(){
+    console.log("inside getTrainsList from backservice");
+    return this.http.get(`http://localhost:8080/test/find/trains/find-only-trains`);
+  }
+
+  //**GEt Stations  FOR ADMIN PAnnel**** */
+  getStationsList(){
+    console.log("inside getStationsList from backservice");
+    return this.http.get(`http://localhost:8080/find/stations/find-only-stations`);
+  }
 
 }

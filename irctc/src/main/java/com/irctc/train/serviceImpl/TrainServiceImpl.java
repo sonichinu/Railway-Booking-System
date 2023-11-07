@@ -50,4 +50,9 @@ public class TrainServiceImpl implements TrainService {
     public Train getTrainById(int trainId) {
         return this.repo.findById(trainId).orElseThrow(()->new ApiException("train not found with TrainID ",trainId));
     }
+
+    @Override
+    public List<Object[]> getOnlyTrainData() {
+        return this.repo.getOnlyTrainData();
+    }
 }

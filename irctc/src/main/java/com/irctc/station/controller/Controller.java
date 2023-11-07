@@ -1,6 +1,5 @@
 package com.irctc.station.controller;
 
-import com.irctc.station.entity.Station;
 import com.irctc.station.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +15,8 @@ public class Controller {
 
 //    @PostMapping("/find/{from}/{to}")
 
-    @GetMapping("/find/station")
-    public ResponseEntity<List<Station>> getAllStations(){
+    @GetMapping("/find/stations/find-only-stations")
+    public ResponseEntity<List<Object[]>> getAllStations(){
         return ResponseEntity.ok(this.service.getAllStations());
     }
 

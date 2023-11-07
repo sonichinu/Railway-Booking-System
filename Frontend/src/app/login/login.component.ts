@@ -41,9 +41,12 @@ export class LoginComponent {
           (user:any)=>{
             this.login.setUser(user);
             console.log(user);
-            if(user!= null){
+            if(user!= null && user.role == null){
               this.router.navigateByUrl('/dashboard');
               // this.login.loginStatusSubject.next(true);
+            }
+            else if(user!=null && user.role == 'Admin'){
+              this.router.navigateByUrl('/admin-dashboard')
             }
             else{
               this.login.logout();

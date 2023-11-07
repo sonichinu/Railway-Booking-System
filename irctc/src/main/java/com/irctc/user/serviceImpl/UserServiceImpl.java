@@ -63,4 +63,9 @@ public class UserServiceImpl implements UserService {
             this.repo.delete(userToBeDeleted);
         }
     }
+
+    @Override
+    public List<Object[]> getOnlyUsers() {
+        return this.repo.findOnlyUsers();
+    }
 }

@@ -1,0 +1,32 @@
+<p>list-of-users works!</p>
+
+<div class="container">
+    <div class="card m-5 p-3">
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" >
+                <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone No.</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of listOfUsers; let i = index" 
+                >
+                    <td>{{ i+1 }}</td>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[2] }}</td>
+                    <td>{{ user[3] }}</td>
+                    <td>{{ user[4] }}</td>
+                    <td><button mat-stroked-button color="primary" routerLink="/admin-dashboard/show-user-trips" (click)="sendUser(user)">ShowDetails</button></td>
+                    
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

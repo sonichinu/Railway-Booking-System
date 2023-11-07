@@ -31,6 +31,12 @@ import { ShowBookingDetailsComponent } from './show-booking-details/show-booking
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminSidebarComponent } from './admin-dashboard/admin-sidebar/admin-sidebar.component';
+import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
+import { ListOfTrainsComponent } from './list-of-trains/list-of-trains.component';
+import { ListOfStationsComponent } from './list-of-stations/list-of-stations.component';
+import { ShowUserTripsComponent } from './show-user-trips/show-user-trips.component';
 
 
 
@@ -50,7 +56,13 @@ import { MatSortModule } from '@angular/material/sort';
     BookTicketComponent,
     MyTripsComponent,
     UpcommingTripsComponent,
-    ShowBookingDetailsComponent
+    ShowBookingDetailsComponent,
+    AdminDashboardComponent,
+    AdminSidebarComponent,
+    ListOfUsersComponent,
+    ListOfTrainsComponent,
+    ListOfStationsComponent,
+    ShowUserTripsComponent
   ],
   imports: [
     DataTablesModule,

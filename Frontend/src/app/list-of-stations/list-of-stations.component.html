@@ -1,0 +1,26 @@
+<p>list-of-stations works!</p>
+
+<div class="container">
+    <div class="card m-5 p-3">
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" >
+                <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let station of listOfStations; let i = index" 
+                >
+                    <td>{{ i+1 }}</td>
+                    <td>{{ station[1] }}</td>
+                    <td><button mat-stroked-button color="primary" routerLink="/admin-dashboard" (click)="sendStation(station)">ShowDetails</button></td>
+                    
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

@@ -53,4 +53,9 @@ public class UserController {
         return new ResponseEntity<ApiResponse>(new ApiResponse("user Deleted Sucessfully ",true, email), HttpStatus.OK);
     }
 
+    @GetMapping("/find/users/find-only-users")
+    public ResponseEntity<List<Object[]>> getOnlyUsers(){
+        return new ResponseEntity<List<Object[]>>(this.service.getOnlyUsers(), HttpStatus.OK);
+    }
+
 }

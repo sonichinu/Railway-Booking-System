@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BackserviceService } from '../backservice.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
   templateUrl: './upcomming-trips.component.html',
   styleUrls: ['./upcomming-trips.component.css']
 })
-export class UpcommingTripsComponent {
+export class UpcommingTripsComponent implements OnInit{
 
   constructor(private backService:BackserviceService, private snack:MatSnackBar){}
 
@@ -76,5 +76,6 @@ export class UpcommingTripsComponent {
         }
     });
 }
+
 
 }

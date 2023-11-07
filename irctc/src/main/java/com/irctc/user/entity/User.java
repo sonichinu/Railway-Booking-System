@@ -39,6 +39,8 @@ public class User implements UserDetails {
     @JsonIgnoreProperties({"user"})
     private List<Bookings> booking;
 
+    private String role;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -79,9 +81,6 @@ public class User implements UserDetails {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", usersname='" + usersname + '\'' +
-                ", password='" + password + '\'' +
-//                ", employee=" + employee +
-//                ", booking=" + booking +
                 '}';
     }
 }

@@ -32,4 +32,9 @@ public class TrainController {
     public ResponseEntity<Train> getTrainByID(@PathVariable int id){
         return ResponseEntity.ok(this.service.getTrainById(id));
     }
+
+    @GetMapping("/find/trains/find-only-trains")
+    public ResponseEntity<List<Object[]>> getOnlyTrainData(){
+        return ResponseEntity.ok(this.service.getOnlyTrainData());
+    }
 }
