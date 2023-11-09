@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { enc, AES } from 'crypto-js';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class LoginService {
 
   public loginStatusSubject = new Subject<boolean>();
 
-
+  private secretKey = 'SecretKey';
 
   //************GEt Current User **********************/
   public getCurrentUSer(){
@@ -57,15 +58,20 @@ export class LoginService {
   //*************setUser in ls */
   public setUser(user:any){
     // console.log("this is user befor storing in local storage", JSON.stringify(user));
-    
-    localStorage.setItem("user", JSON.stringify(user));
+    const encrypted = AES.encrypt(JSON.stringify(user), this.secretKey);
+    localStorage.setItem("user", encrypted.toString());
   }
 
   //***********get user*************  */
   public getUser(){
     let userStr = localStorage.getItem('user');
     if(userStr!=null){
-      return JSON.parse(userStr);
+
+      const bytes = AES.decrypt(userStr, 'SecretKey');
+      const decryptedData = JSON.parse(bytes.toString(enc.Utf8));
+      console.log("loginService getuser is called" , decryptedData);
+      
+      return decryptedData;
     }
     else{
       this.logout();

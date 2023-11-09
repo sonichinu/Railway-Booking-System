@@ -94,6 +94,10 @@ const routes: Routes = [
       {
         path:'show-user-trips',
         component:ShowUserTripsComponent
+      },
+      {
+        path:'show-booking-details',
+        component:ShowBookingDetailsComponent
       }
     ]
   }

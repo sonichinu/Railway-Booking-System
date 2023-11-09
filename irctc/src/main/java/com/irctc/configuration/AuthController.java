@@ -36,8 +36,9 @@ public class AuthController {
 	@PostMapping("/login")
 	public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest request)
 	{
-		UserDetails userDetails = this.service.loadUserByUsername(request.getUsername());
+//		UserDetails userDetails = this.service.loadUserByUsername(request.getUsername());
 		this.authenticate(request.getUsername(), request.getPassword());
+		UserDetails userDetails = this.service.loadUserByUsername(request.getUsername());
 		String generateToken = this.helper.generateToken(userDetails);
 		System.out.println("*******************************" +generateToken);
 		JwtAuthResponse authResponse = new JwtAuthResponse();

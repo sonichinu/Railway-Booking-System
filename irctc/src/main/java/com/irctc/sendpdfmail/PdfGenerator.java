@@ -84,6 +84,9 @@ public class PdfGenerator {
 
         document.add(table);
 
+        document.add(space);
+        document.add(space);
+
         Paragraph paragraph3 = new Paragraph("From Your WellWisher");
         space.setAlignment(Paragraph.ALIGN_LEFT);
         document.add(paragraph3);

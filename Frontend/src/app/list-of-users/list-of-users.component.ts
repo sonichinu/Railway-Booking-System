@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { BackserviceService } from '../backservice.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { DataTransferService } from '../data-transfer.service';
 
 @Component({
   selector: 'app-list-of-users',
   templateUrl: './list-of-users.component.html',
   styleUrls: ['./list-of-users.component.css']
 })
-export class ListOfUsersComponent implements OnInit{
+export class ListOfUsersComponent implements OnInit, OnDestroy  {
 
 
-  constructor(private backService:BackserviceService, private snack:MatSnackBar, private router:Router){}
+  constructor(private backService:BackserviceService, private snack:MatSnackBar, private router:Router, private dataTransfer: DataTransferService){}
 
   ngOnInit(): void {
     console.log("oninit from list_of-users is called");
@@ -28,8 +29,8 @@ export class ListOfUsersComponent implements OnInit{
 
   sendUser(user:any[]){
     console.log(user);
-    // this.dataTransfer.setTrip(trip)
-    // this.router.navigateByUrl('/admin-dashboard/my-trips');
+    this.dataTransfer.setParticularUser(user)
+    this.router.navigateByUrl('/admin-dashboard/show-user-trips');
     
   }
 
@@ -41,7 +42,7 @@ export class ListOfUsersComponent implements OnInit{
           // Handle the response from the backend here
           console.log('Response from the backend:', response);
           this.listOfUsers = response;
-          this.dtTrigger.next
+          this.dtTrigger.next('');
 
           if (this.listOfUsers === null || this.listOfUsers.length === 0) {
             // Display an alert for no trips yet
@@ -61,6 +62,11 @@ export class ListOfUsersComponent implements OnInit{
           });
         }
       );
+  }
+
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
   }
 
 }

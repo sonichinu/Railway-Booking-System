@@ -10,6 +10,7 @@ export class DataTransferService {
   trainDetails:any;
   travelDate:any;
   tripOfUser:any=[];
+  particularUser:any;
 
 
   setTrainDetails(details: any,travelDate:any) {
@@ -32,5 +33,12 @@ export class DataTransferService {
     return this.tripOfUser;
   }
 
+  setParticularUser(user:any[]){
+    this.particularUser=user;
+  }
+  
+  getUser(){
+    return this.particularUser;
+  }
 
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { LoginService } from './login.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import * as jwt_decode from 'jwt-decode';
+import { AES, enc } from 'crypto-js';
 
 @Injectable({
   providedIn: 'root'
@@ -87,10 +88,20 @@ export class BackserviceService {
     //   let res = JSON.parse(payload);
     // console.log("email id from token is" , res);
     const userObj:any = localStorage.getItem('user');
-    const user = JSON.parse(userObj);
-    const id = user.id;
+
+    const bytes = AES.decrypt(userObj, 'SecretKey');
+    const decryptedData = JSON.parse(bytes.toString(enc.Utf8));
+
+    // const user = JSON.parse(userObj);
+    const id = decryptedData.id;
     console.log(id);
     return this.http.get(`http://localhost:8080/find/bookings/${id}`);  
+
+  }
+
+  getTripDetails(id:any){
+    console.log("getTripDetailsOfUser is called from backservice");
+    return this.http.get(`http://localhost:8080/find/bookings/${id}`); 
 
   }
 
@@ -107,8 +118,12 @@ export class BackserviceService {
     //   let res = JSON.parse(payload);
     // console.log("email id from token is" +res);
     const userObj:any = localStorage.getItem('user');
-    const user = JSON.parse(userObj);
-    const id = user.id;
+
+    const bytes = AES.decrypt(userObj, 'SecretKey');
+    const decryptedData = JSON.parse(bytes.toString(enc.Utf8));
+
+    // const user = JSON.parse(userObj);
+    const id = decryptedData.id;
     console.log(id);
     return this.http.get(`http://localhost:8080/find/bookings/upcomming/${id}`);  
   }
