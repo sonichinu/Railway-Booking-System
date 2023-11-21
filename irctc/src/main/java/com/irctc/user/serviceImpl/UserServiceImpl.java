@@ -33,8 +33,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User registerUser(User user) {
-        user.setPassword(this.encoder.encode(user.getPassword()));
-        return this.repo.save(user);
+        if(this.repo.findUserByEmail(user.getEmail())==null){
+            user.setPassword(this.encoder.encode(user.getPassword()));
+            return this.repo.save(user);
+        }
+       throw new ApiException("User Already Exists with this email");
     }
 
     @Override

@@ -1,26 +1,38 @@
 <p>train works!</p>
 
 
-    <form (ngSubmit)="onSubmit()">
+    <form [formGroup]="trainForm" (ngSubmit)="onSubmit(trainForm)">
 
-    <div class="form-group">
-      <label for="fromStation">From Station</label>
-      <input type="text" id="fromStation" name="fromStation" [(ngModel)]="fromStation" class="form-control" placeholder="Enter From Station" required>
-    </div>
-  
-    <div class="form-group">
-      <label for="toStation">To Station</label>
-      <input type="text" id="toStation" name="toStation" [(ngModel)]="toStation" class="form-control" placeholder="Enter To Station" required>
-    </div>
+    <!-- FOR FROMSTATION -->
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>From Station</mat-label>
+      <input formControlName="fromStation" matInput placeholder="Enter Here">
+<mat-error *ngIf="trainForm && trainForm.invalid ">
+Must not be empty
+</mat-error>
+    </mat-form-field> 
+<!-- FOR TOSTATION        -->
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>To Station</mat-label>
+      <input formControlName="toStation" matInput placeholder="Enter Here">
+<mat-error *ngIf="trainForm && trainForm.invalid ">
+Must not be empty
+</mat-error>
+    </mat-form-field>
   
    
+<!-- FOR DATE        -->
+<mat-form-field class="full-width" appearance="outline">
+  <mat-label>Date</mat-label>
+  <input formControlName="travelDate" matInput placeholder="Enter Here" type="date">
+<mat-error *ngIf="trainForm && trainForm.invalid ">
+Must not be empty
+</mat-error>
+</mat-form-field>
+
+   
   
-    <div class="form-group">
-      <label for="travelDate">Date</label>
-      <input type="date" id="travelDate" name="travelDate" [(ngModel)]="travelDate" class="form-control" required>
-    </div>
-  
-    <button type="submit" class="btn btn-primary">Search</button>
+    <button type="submit" class="btn btn-primary" [disabled]="trainForm.invalid">Search</button>
   </form>
 
 

@@ -78,30 +78,30 @@
   <div *ngIf="noOfPassengers > 0">
     <div *ngFor="let passenger of passengersArray; let i = index">
       <div class="form-group">
-        <label for="passengerName{{ i }}">Passenger Name </label>
-        <input type="text" id="passengerName{{ i+1 }}" name="passengerName{{ i }}" [(ngModel)]="passengersArray[i].name" class="form-control" placeholder="Enter Passenger Name {{i}}">
+        <label for="passengerName{{ i+1 }}">Passenger Name </label>
+        <input type="text" id="passengerName{{ i+1 }}" name="passengerName{{ i+1 }}" [(ngModel)]="passengersArray[i].name" class="form-control" placeholder="Enter Passenger Name {{i+1}}" required="required">
       </div>
     
       <div class="form-group">
-        <label for="passengerAge{{ i }}">Passenger Age</label>
-        <input type="number" id="passengerAge{{ i+1 }}" name="passengerAge{{ i }}" [(ngModel)]="passengersArray[i].age" class="form-control" placeholder="Enter Passenger Age {{i}}">
+        <label for="passengerAge{{ i+1 }}">Passenger Age</label>
+        <input type="number" id="passengerAge{{ i+1 }}" name="passengerAge{{ i+1 }}" [(ngModel)]="passengersArray[i].age" class="form-control" placeholder="Enter Passenger Age {{i+1}}" required="required">
       </div>
       <div class="form-group">
           <label for="passengerGender{{ i+1 }}">Passenger Gender</label>
           <div class="radio-group">
               <label>
-                  <input type="radio" id="male{{ i }}" name="passengerGender{{ i }}" [(ngModel)]="passengersArray[i].gender" [value]="'male'"> Male
+                  <input type="radio" id="male{{ i+1 }}" name="passengerGender{{ i }}" [(ngModel)]="passengersArray[i].gender" [value]="'male'"> Male
                 </label>
                 <label>
-                    <input type="radio" id="female{{ i }}" name="passengerGender{{ i }}" [(ngModel)]="passengersArray[i].gender" [value]="'female'"> Female
+                    <input type="radio" id="female{{ i+1 }}" name="passengerGender{{ i }}" [(ngModel)]="passengersArray[i].gender" [value]="'female'"> Female
                 </label>
                 <label>
-                    <input type="radio" id="other{{ i }}" name="passengerGender{{ i }}" [(ngModel)]="passengersArray[i].gender" [value]="'other'"> Other
+                    <input type="radio" id="other{{ i+1 }}" name="passengerGender{{ i }}" [(ngModel)]="passengersArray[i].gender" [value]="'other'"> Other
                 </label>
             </div>
         </div>
     </div>
 
   
-    <button class="btn btn-primary" (click)="sendDetails()">Send Details</button>
+    <button class="btn btn-primary" (click)="sendDetails()" [disabled]="!isPassengerDataValid()">Send Details</button>
   </div>

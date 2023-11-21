@@ -21,7 +21,7 @@ export class BookTicketComponent {
   selectedSeatType: string = '';
   trainDetails: any;
   noOfPassengers: any='';
-  passengersArray: { name: string, age: number , gender: string}[] = [];
+  passengersArray: { name: string, age: any , gender: string}[] = [];
   onUse() {
     console.log(this.noOfPassengers);
     if(this.noOfPassengers>6){
@@ -37,31 +37,33 @@ export class BookTicketComponent {
   }
 
   initializePassengersArray() {
-    this.passengersArray = new Array(this.noOfPassengers).fill(null).map(() => ({ name: '', age: 0, gender: '' }));
+    this.passengersArray = new Array(this.noOfPassengers).fill(null).map(() => ({ name: '', age:'', gender: '' }));
   }
   
 
   sendDetails() {
     console.log('Passenger details:', this.passengersArray);
-    this.bacservice.bookTicket(this.trainDetails, this.dataTransfer.getTravelDate(),this.passengersArray,this.noOfPassengers,this.selectedSeatType).subscribe(
-      (response: any) => {
-        // Handle the response from the backend here
-        console.log('data inserted successfully:', response);
-        Swal.fire(
-          'Sucess',
-          'Ticket Booked  Sucessfully with Booking_ID ' + response.id,
-          'success'
-        );
-      },
-      (error) => {
-        // Handle any errors here
-        console.error('Error:', error);
-        this.snack.open('Something went wrong!!', '', {
-          duration: 3000,
-        });
-      }
-    );
-    this.router.navigateByUrl("/dashboard");
+    if(this.isPassengerDataValid()){
+      this.bacservice.bookTicket(this.trainDetails, this.dataTransfer.getTravelDate(),this.passengersArray,this.noOfPassengers,this.selectedSeatType).subscribe(
+        (response: any) => {
+          // Handle the response from the backend here
+          console.log('data inserted successfully:', response);
+          Swal.fire(
+            'Sucess',
+            'Ticket Booked  Sucessfully with Booking_ID ' + response.id,
+            'success'
+          );
+        },
+        (error) => {
+          // Handle any errors here
+          console.error('Error:', error);
+          this.snack.open('Something went wrong!!', '', {
+            duration: 3000,
+          });
+        }
+      );
+      this.router.navigateByUrl("/dashboard");
+    }
   }
 
   onSeatTypeChange(seatType: string) {
@@ -69,5 +71,16 @@ export class BookTicketComponent {
     // You can add any logic here to handle the selected seat type
     console.log('Selected Seat Type:', this.selectedSeatType);
   } 
+
+  isPassengerDataValid(): boolean {
+    // Check if any passenger field is empty or if age is less than or equal to 1
+    return this.passengersArray.every(
+      passenger =>
+        passenger.name.trim().length > 0 && // Check if name is not blank
+        passenger.age > 1 && // Check if age is greater than 1
+        passenger.gender.trim().length > 0
+      /* Add more conditions if needed */
+    ) && this.selectedSeatType.trim().length>0;
+  }
 
 }

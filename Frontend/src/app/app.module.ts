@@ -37,8 +37,8 @@ import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
 import { ListOfTrainsComponent } from './list-of-trains/list-of-trains.component';
 import { ListOfStationsComponent } from './list-of-stations/list-of-stations.component';
 import { ShowUserTripsComponent } from './show-user-trips/show-user-trips.component';
-
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 
@@ -66,6 +66,8 @@ import { ShowUserTripsComponent } from './show-user-trips/show-user-trips.compon
   ],
   imports: [
     DataTablesModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
