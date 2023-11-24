@@ -39,6 +39,9 @@ import { ListOfStationsComponent } from './list-of-stations/list-of-stations.com
 import { ShowUserTripsComponent } from './show-user-trips/show-user-trips.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { AdminprofileComponent } from './admin-dashboard/adminprofile/adminprofile.component';
+import { ShowTrainRoutesComponent } from './show-train-routes/show-train-routes.component';
+
 
 
 
@@ -62,7 +65,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     ListOfUsersComponent,
     ListOfTrainsComponent,
     ListOfStationsComponent,
-    ShowUserTripsComponent
+    ShowUserTripsComponent,
+    AdminprofileComponent,
+    ShowTrainRoutesComponent
   ],
   imports: [
     DataTablesModule,

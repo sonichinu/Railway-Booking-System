@@ -177,4 +177,10 @@ export class BackserviceService {
     return this.http.get(`http://localhost:8080/find/stations/find-only-stations`);
   }
 
+   //**GEt TRAIN ROUTES   FOR ADMIN PAnnel**** */
+   getTrainRoutes(id:any){
+    console.log("inside getTrainROutes from backservice");
+    return this.http.get(`http://localhost:8080/test/find/train-routes/${id}`);
+  }
+
 }

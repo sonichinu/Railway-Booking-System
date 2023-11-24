@@ -25,6 +25,12 @@ export class LoginService {
     return this.http.post(`http://localhost:8080/auth/login`,{username:email,password:password});
   }
 
+  //***********FOR GOOGLE AUTH****************** */
+  public googleAuth(){
+    console.log("google auth is called");
+    return this.http.get(`http://localhost:8080/login`);
+  }
+
   //*****************Login user set token in local storage***************
   public loginUser(token:any){
     console.log("inside loginuser function login service");

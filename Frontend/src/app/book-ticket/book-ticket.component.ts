@@ -82,5 +82,43 @@ export class BookTicketComponent {
       /* Add more conditions if needed */
     ) && this.selectedSeatType.trim().length>0;
   }
+  
+
+  passengerNameTouched: boolean[] = [];
+passengerAgeTouched: boolean[] = [];
+
+markNameAsTouched(index: number): void {
+  this.passengerNameTouched[index] = true;
+}
+
+markAgeAsTouched(index: number): void {
+  this.passengerAgeTouched[index] = true;
+}
+
+// Function to track field touch
+onPassengerNameTouched(index: number): void {
+  this.passengerNameTouched[index] = true;
+}
+
+isPassengerNameInvalid(index: number): boolean {
+  const nameControl = this.passengersArray[index].name;
+  if (this.passengerNameTouched[index]) {
+    return !nameControl || nameControl.trim().length === 0;
+  }
+  return false; // Field not yet touched, so not invalid
+}
+
+onPassengerAgeTouched(index: number): void {
+  this.passengerAgeTouched[index] = true;
+}
+
+isPassengerAgeInvalid(index: number): boolean {
+  const ageControl = this.passengersArray[index].age;
+  if (this.passengerAgeTouched[index]) {
+    return !ageControl || isNaN(ageControl) || ageControl <= 0;
+  }
+  return false; // Field not yet touched, so not invalid
+}
+
 
 }

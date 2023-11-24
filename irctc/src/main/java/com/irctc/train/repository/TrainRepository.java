@@ -30,4 +30,10 @@ public interface TrainRepository extends JpaRepository<Train, Integer> {
 
     @Query("SELECT t.id, t.name, t.number, t.type FROM Train t")
     List<Object[]> getOnlyTrainData();
+
+    @Query("SELECT s.name, r.arrivalTime, r.departureTime, r.distance FROM Train t " +
+            "JOIN Route r ON r.train.id = t.id " +
+            "JOIN Station s ON r.station.id = s.id " +
+            "WHERE t.id = :trainId")
+    List<Object[]> getTrainRoutes(int trainId);
 }

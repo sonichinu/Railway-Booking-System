@@ -11,4 +11,5 @@ public interface TrainService {
     List<Object[]> getTrainRoutes(String from, String to, String travelDate);
     Train getTrainById(int traiIid);
     List<Object[]> getOnlyTrainData();
+    List<Object[]> getTrainRoutesById(int id);
 }

@@ -64,6 +64,21 @@ export class LoginComponent {
     );
   }
 
+  toGoogleSignUp(){
+    this.login.googleAuth()
+    .subscribe(
+      (response:any) => {
+        // Handle the response from the backend here
+        console.log('response from backend:', response);
+         this.router.navigateByUrl('/login');
+      },
+      error => {
+        // Handle any errors here
+        console.error('Error:', error);
+        console.log(error);
+      }
+    );
+  }
 
 
 

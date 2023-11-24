@@ -1,0 +1,120 @@
+<p>adminprofile works!</p>
+<mat-card>
+    <h1>Welcome to Profile</h1>
+    <mat-card-content>
+      <div class="bootstrap-wrapper">
+        <div class="container">
+          <div class="container text-center">
+            <img src="../../assets/userlogo.png" alt="" srcset="">
+            <h2 style="margin-top: 15px;">{{ user.name }}</h2>
+          </div>
+          <div class="row">
+            <div class="col-md-10 offset-md-1">
+              <!-- Add a form for profile editing -->
+              <form #profileForm="ngForm" (ngSubmit)="onUpdateProfile()">
+                <table class="table table-striped">
+                  <tbody>
+                    <tr>
+                      <td><b>Your Email</b></td>
+                      <td>
+                        <!-- Display user's email, or an input field for editing -->
+                        <ng-container *ngIf="!editEmail; else editEmailField">
+                          {{ user.email }}
+                          <!-- <button mat-icon-button (click)="editEmail = true">
+                            <mat-icon>edit</mat-icon>
+                          </button> -->
+                        </ng-container>
+                        <ng-template #editEmailField>
+                          <input type="text" name="email" [(ngModel)]="user.email" required>
+                          <button mat-icon-button (click)="editEmail = false">
+                            <mat-icon>check</mat-icon>
+                          </button>
+                        </ng-template>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>Your Name</b></td>
+                      <td>
+                        <!-- Display user's email, or an input field for editing -->
+                        <ng-container *ngIf="!editName; else editNameField">
+                          {{ user.name }}
+                          <button mat-icon-button (click)="editName = true">
+                            <mat-icon>edit</mat-icon>
+                          </button>
+                        </ng-container>
+                        <ng-template #editNameField>
+                          <input type="text" name="name" [(ngModel)]="user.name" required>
+                          <button mat-icon-button (click)="editName = false">
+                            <mat-icon>check</mat-icon>
+                          </button>
+                        </ng-template>
+                      </td>
+                    </tr>
+  
+  
+                    <tr>
+                      <td><b>Your Username</b></td>
+                      <td>
+                        <!-- Display user's email, or an input field for editing -->
+                        <ng-container *ngIf="!editUsersname; else editUsersnameField">
+                          {{ user.usersname }}
+                          <button mat-icon-button (click)="editUsersname = true">
+                            <mat-icon>edit</mat-icon>
+                          </button>
+                        </ng-container>
+                        <ng-template #editUsersnameField>
+                          <input type="text" name="usersname" [(ngModel)]="user.usersname" required>
+                          <button mat-icon-button (click)="editUsersname = false">
+                            <mat-icon>check</mat-icon>
+                          </button>
+                        </ng-template>
+                      </td>
+                    </tr>
+  
+  
+                    <tr>
+                      <td><b>Your Phone</b></td>
+                      <td>
+                        <!-- Display user's email, or an input field for editing -->
+                        <ng-container *ngIf="!editPhone; else editPhoneField">
+                          {{ user.phone }}
+                          <button mat-icon-button (click)="editPhone = true">
+                            <mat-icon>edit</mat-icon>
+                          </button>
+                        </ng-container>
+                        <ng-template #editPhoneField>
+                          <input type="text" name="phone" [(ngModel)]="user.phone" required>
+                          <button mat-icon-button (click)="editPhone = false">
+                            <mat-icon>check</mat-icon>
+                          </button>
+                        </ng-template>
+                      </td>
+                    </tr>
+  
+                    <tr>
+                      <td><b>Status</b></td>
+                      <td>
+                        <!-- Display user's email, or an input field for editing -->
+                        <ng-container>
+                           Active
+                        </ng-container>
+                        <ng-template #editEmailField>
+                          <input type="text" name="email" [(ngModel)]="user.email" required>
+                          <button mat-icon-button (click)="editEmail = false">
+                            <mat-icon>check</mat-icon>
+                          </button>
+                        </ng-template>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- Add a submit button for updating profile -->
+                <button mat-raised-button type="submit" color="primary">Save Changes</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

@@ -79,12 +79,18 @@
     <div *ngFor="let passenger of passengersArray; let i = index">
       <div class="form-group">
         <label for="passengerName{{ i+1 }}">Passenger Name </label>
-        <input type="text" id="passengerName{{ i+1 }}" name="passengerName{{ i+1 }}" [(ngModel)]="passengersArray[i].name" class="form-control" placeholder="Enter Passenger Name {{i+1}}" required="required">
+        <input type="text" id="passengerName{{ i+1 }}" name="passengerName{{ i+1 }}" [(ngModel)]="passengersArray[i].name" class="form-control" placeholder="Enter Passenger Name {{i+1}}" required (blur)="markNameAsTouched(i)">
+<mat-error *ngIf="isPassengerNameInvalid(i)">
+  Must not be empty
+</mat-error>
       </div>
-    
+      
       <div class="form-group">
         <label for="passengerAge{{ i+1 }}">Passenger Age</label>
-        <input type="number" id="passengerAge{{ i+1 }}" name="passengerAge{{ i+1 }}" [(ngModel)]="passengersArray[i].age" class="form-control" placeholder="Enter Passenger Age {{i+1}}" required="required">
+        <input type="number" id="passengerAge{{ i+1 }}" name="passengerAge{{ i+1 }}" [(ngModel)]="passengersArray[i].age" class="form-control" placeholder="Enter Passenger Age {{i+1}}" required (blur)="markAgeAsTouched(i)">
+<mat-error *ngIf="isPassengerAgeInvalid(i)">
+  Must not be empty and should be a valid age
+</mat-error>
       </div>
       <div class="form-group">
           <label for="passengerGender{{ i+1 }}">Passenger Gender</label>

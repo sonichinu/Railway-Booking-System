@@ -28,9 +28,9 @@ public class TrainController {
         return ResponseEntity.ok(this.service.getTrainRoutes(from,to,travelDate));
     }
 
-    @GetMapping("/find/train/{id}")
-    public ResponseEntity<Train> getTrainByID(@PathVariable int id){
-        return ResponseEntity.ok(this.service.getTrainById(id));
+    @GetMapping("/find/train-routes/{id}")
+    public ResponseEntity<List<Object[]>> getTrainRoutesByID(@PathVariable int id){
+        return ResponseEntity.ok(this.service.getTrainRoutesById(id));
     }
 
     @GetMapping("/find/trains/find-only-trains")

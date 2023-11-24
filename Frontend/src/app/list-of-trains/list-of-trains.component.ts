@@ -3,6 +3,7 @@ import { BackserviceService } from '../backservice.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2';
+import { DataTransferService } from '../data-transfer.service';
 
 @Component({
   selector: 'app-list-of-trains',
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class ListOfTrainsComponent implements OnInit {
 
-  constructor(private backService:BackserviceService, private snack:MatSnackBar){}
+  constructor(private backService:BackserviceService, private snack:MatSnackBar, private dataTransfer:DataTransferService){}
 
   ngOnInit(): void {
     console.log("oninit from list_of-train is called");
@@ -26,7 +27,7 @@ export class ListOfTrainsComponent implements OnInit {
 
   sendTrain(train:any[]){
     console.log(train);
-    // this.dataTransfer.setTrip(trip)
+     this.dataTransfer.setTrain(train);
   }
 
   getTrains():void{

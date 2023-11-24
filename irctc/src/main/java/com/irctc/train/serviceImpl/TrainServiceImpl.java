@@ -53,6 +53,19 @@ public class TrainServiceImpl implements TrainService {
 
     @Override
     public List<Object[]> getOnlyTrainData() {
-        return this.repo.getOnlyTrainData();
+        List<Object[]> trainData = this.repo.getOnlyTrainData();
+        if (trainData == null || trainData.isEmpty()) {
+            throw new ApiException("No train data found");
+        }
+        return trainData;
+    }
+
+    @Override
+    public List<Object[]> getTrainRoutesById(int id) {
+        List<Object[]> trainData = this.repo.getTrainRoutes(id);
+        if (trainData == null || trainData.isEmpty()) {
+            throw new ApiException("No train data found with id ", id);
+        }
+        return trainData;
     }
 }

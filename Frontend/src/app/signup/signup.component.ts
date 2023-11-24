@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +15,7 @@ export class SignupComponent implements OnInit{
 
   userForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private backservice:BackserviceService, private snack:MatSnackBar, private router: Router) {}
+  constructor(private formBuilder: FormBuilder,private backservice:BackserviceService, private snack:MatSnackBar, private router: Router, private loginService: LoginService) {}
 
 
   ngOnInit(): void {
@@ -76,4 +77,6 @@ export class SignupComponent implements OnInit{
   clearForm() {
       this.userForm.reset();
   }
+
+ 
 }

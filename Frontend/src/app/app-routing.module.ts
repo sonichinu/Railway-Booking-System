@@ -16,6 +16,8 @@ import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
 import { ListOfTrainsComponent } from './list-of-trains/list-of-trains.component';
 import { ListOfStationsComponent } from './list-of-stations/list-of-stations.component';
 import { ShowUserTripsComponent } from './show-user-trips/show-user-trips.component';
+import { AdminprofileComponent } from './admin-dashboard/adminprofile/adminprofile.component';
+import { ShowTrainRoutesComponent } from './show-train-routes/show-train-routes.component';
 
 const routes: Routes = [
   {
@@ -80,6 +82,10 @@ const routes: Routes = [
         component:HomeComponent
       },
       {
+        path:'adminprofile',
+        component:AdminprofileComponent
+      },
+      {
         path:'list-of-users',
         component:ListOfUsersComponent,
       },
@@ -98,6 +104,10 @@ const routes: Routes = [
       {
         path:'show-booking-details',
         component:ShowBookingDetailsComponent
+      },
+      {
+        path:'show-train-routes',
+        component:ShowTrainRoutesComponent
       }
     ]
   }

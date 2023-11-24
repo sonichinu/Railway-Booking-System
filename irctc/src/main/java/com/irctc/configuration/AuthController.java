@@ -33,6 +33,11 @@ public class AuthController {
 		return (User)(this.service.loadUserByUsername(principal.getName()));
 	}
 
+	@GetMapping("/get-current-user-from-oauth")
+	public Principal principalData(Principal principal){
+		return principal;
+	}
+
 	@PostMapping("/login")
 	public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest request)
 	{
