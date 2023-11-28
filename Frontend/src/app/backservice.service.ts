@@ -28,7 +28,7 @@ export class BackserviceService {
 
 
   // *******Book Tickets Here *************************
-  bookTicket(details:any, travelDate:string,passengersArray:any,noOfPassengers:any,seatType:any):Observable<object>{
+  bookTicket(details:any, travelDate:string,passengersArray:any,noOfPassengers:any,seatType:any,amount:any):Observable<object>{
     console.log("bookTicket  is called");
     const token = localStorage.getItem('token');
     console.log("Token is: " + token);
@@ -42,24 +42,7 @@ export class BackserviceService {
     } else {
       console.log("Token not found in localStorage");
     }
-
     console.log(seatType);
-    var amount:number=0;
-    if(seatType=="seat"){
-      amount = (details[6]-details[4])*1.1;
-    }
-    if(seatType=="sleeper"){
-      amount = (details[6]-details[4])*1.25;
-    }
-    if(seatType=="thirdAC"){
-      amount = (details[6]-details[4])*1.5;
-    }
-    if(seatType=="secondAC"){
-      amount = (details[6]-details[4])*1.8;
-    }
-    if(seatType=="firstAC"){
-      amount = (details[6]-details[4])*2.1;
-    }
     const seat = details[2]+' '+seatType;
     console.log(amount);
     const jsonTicketDetails = {
@@ -78,21 +61,10 @@ export class BackserviceService {
 //****GET TRIP DETAILS OF A PARTICULAR USER***** */
   getTripDetailsOfUser(){
     console.log("getTripDetailsOfUser is called from backservice");
-    // const token:any = localStorage.getItem('token');
-    // console.log("tpken is ***"+token);
-    // let payload = token.split('.')[1];
-    //   payload = payload.replace(/-/g, '+').replace(/_/g, '/');
-    //   payload = decodeURIComponent(window.atob(payload).split('').map(function (c) {
-    //     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    //   }).join(''));
-    //   let res = JSON.parse(payload);
-    // console.log("email id from token is" , res);
     const userObj:any = localStorage.getItem('user');
 
     const bytes = AES.decrypt(userObj, 'SecretKey');
     const decryptedData = JSON.parse(bytes.toString(enc.Utf8));
-
-    // const user = JSON.parse(userObj);
     const id = decryptedData.id;
     console.log(id);
     return this.http.get(`http://localhost:8080/find/bookings/${id}`);  
@@ -108,15 +80,6 @@ export class BackserviceService {
   //****GET TRIP DETAILS OF A PARTICULAR USER***** */
   getUpComingTripDetailsOfUser(){
     console.log("get Upcomming TripDetailsOfUser is called from backservice");
-    // const token:any = localStorage.getItem('token');
-    // console.log("tpken is ***"+token);
-    // let payload = token.split('.')[1];
-    //   payload = payload.replace(/-/g, '+').replace(/_/g, '/');
-    //   payload = decodeURIComponent(window.atob(payload).split('').map(function (c) {
-    //     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    //   }).join(''));
-    //   let res = JSON.parse(payload);
-    // console.log("email id from token is" +res);
     const userObj:any = localStorage.getItem('user');
 
     const bytes = AES.decrypt(userObj, 'SecretKey');
@@ -183,4 +146,11 @@ export class BackserviceService {
     return this.http.get(`http://localhost:8080/test/find/train-routes/${id}`);
   }
 
+  // *******INITIALIZE PAYMENT********************
+  initializePayment(amount:number):Observable<object>{
+    console.log("initialize payment is called");
+    const intAmount = Math.round(amount); // Convert to integer representation of amount
+    return this.http.get(`http://localhost:8080/initializePayment/${intAmount}`);
+    // return this.http.get(`http://localhost:8080/initializePayment/${amount}`);
+  }
 }

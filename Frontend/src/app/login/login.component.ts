@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
+import { GoogleLoginProvider, SocialAuthService } from "@abacritt/angularx-social-login";
 
 @Component({
   selector: 'app-login',
@@ -65,19 +66,10 @@ export class LoginComponent {
   }
 
   toGoogleSignUp(){
-    this.login.googleAuth()
-    .subscribe(
-      (response:any) => {
-        // Handle the response from the backend here
-        console.log('response from backend:', response);
-         this.router.navigateByUrl('/login');
-      },
-      error => {
-        // Handle any errors here
-        console.error('Error:', error);
-        console.log(error);
-      }
-    );
+    // this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((data) => {
+    //   localStorage.setItem('google_auth', JSON.stringify(data));
+    //   this.router.navigateByUrl('/dashboard').then();
+    // });
   }
 
 

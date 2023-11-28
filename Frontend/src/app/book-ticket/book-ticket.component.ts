@@ -1,27 +1,78 @@
-import { Component } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { DataTransferService } from '../data-transfer.service';
 import { BackserviceService } from '../backservice.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { post } from 'jquery';
+import { LoginService } from '../login.service';
+
+declare var Razorpay: any;
 
 @Component({
   selector: 'app-book-ticket',
   templateUrl: './book-ticket.component.html',
   styleUrls: ['./book-ticket.component.css']
 })
-export class BookTicketComponent {
+export class BookTicketComponent{
   snack: any;
+  rzp:any;
+  user:any;
 
-  constructor(private dataTransfer: DataTransferService,private bacservice: BackserviceService, private router:Router){
+
+  constructor(private dataTransfer: DataTransferService,private bacservice: BackserviceService, private router:Router, private login:LoginService){
     this.trainDetails = this.dataTransfer.getTrainDetails();
     console.log(this.trainDetails);
+
+
+    this.user= this.login.getCurrentUSer().subscribe(
+      (response:any) => {
+        // Handle the response from the backend here
+        console.log('User Fetched from backend api successfully:', response);
+        this.user= response;
+      },
+      error => {
+        // Handle any errors here
+        console.error('Error is:', error);
+        this.snack.open('Something went wrong!!', '',{
+          duration:3000,
+        });
+      }
+    );
+    console.log("user from book ticket CONSTRUCTOR is ", this.user);
+
+    this.rzp = new Razorpay({
+      key: 'rzp_test_Lt6Kiszh9cXocL', // Replace with your Razorpay key
+      name: "Rohit's IRCTC Booking System",
+      description: "This is a Dummy IRCTC APP developed By Rohit Soni...",
+      currency: 'INR',
+      handler: function (response: any) {
+        console.log(response);
+        // Handle payment success
+        console.log('Payment Id:', response.razorpay_payment_id);
+        console.log('Order Id:', response.razorpay_order_id);
+        console.log('Signature:', response.razorpay_signature);
+      },
+      prefill: {
+        name: this.user.name,
+        email: this.user.email,
+        contact: this.user.phone
+        // name: "RAndomName",
+        // email: "RandomEMail@gmail.com",
+        // contact: "7777777777"
+      },
+      theme: {
+        color: '#F37254'
+      }
+    });
     
   }
+  
 
   selectedSeatType: string = '';
   trainDetails: any;
   noOfPassengers: any='';
   passengersArray: { name: string, age: any , gender: string}[] = [];
+  paymentId:any = '';
   onUse() {
     console.log(this.noOfPassengers);
     if(this.noOfPassengers>6){
@@ -44,17 +95,80 @@ export class BookTicketComponent {
   sendDetails() {
     console.log('Passenger details:', this.passengersArray);
     if(this.isPassengerDataValid()){
-      this.bacservice.bookTicket(this.trainDetails, this.dataTransfer.getTravelDate(),this.passengersArray,this.noOfPassengers,this.selectedSeatType).subscribe(
+
+
+      let amount:number=1;
+      if(this.selectedSeatType=="seat"){
+        amount = (this.trainDetails[6]-this.trainDetails[4])*1.1;
+      }
+      if(this.selectedSeatType=="sleeper"){
+        amount = (this.trainDetails[6]-this.trainDetails[4])*1.25;
+      }
+      if(this.selectedSeatType=="thirdAC"){
+        amount = (this.trainDetails[6]-this.trainDetails[4])*1.5;
+      }
+      if(this.selectedSeatType=="secondAC"){
+        amount = (this.trainDetails[6]-this.trainDetails[4])*1.8;
+      }
+      if(this.selectedSeatType=="firstAC"){
+        amount = (this.trainDetails[6]-this.trainDetails[4])*2.1;
+      }
+
+      this.bacservice.initializePayment(amount*this.noOfPassengers).subscribe(
         (response: any) => {
           // Handle the response from the backend here
-          console.log('data inserted successfully:', response);
-          Swal.fire(
-            'Sucess',
-            'Ticket Booked  Sucessfully with Booking_ID ' + response.id,
-            'success'
-          );
+          console.log('payment response from backend', response);
+          if(response.status == "created"){
+            this.rzp = new Razorpay({
+              key: 'rzp_test_Lt6Kiszh9cXocL', // Replace with your Razorpay key
+              name: "Rohit's IRCTC Booking System",
+              description: "This is a Dummy IRCTC APP developed By Rohit Soni...",
+              currency: 'INR',
+              amount:response.amount,
+              order_id:response.id,
+              handler:(responseFront: any) =>  {
+                console.log("frontResponse is", responseFront);
+                // Handle payment success
+                console.log('Payment Id:',responseFront.razorpay_payment_id);
+                console.log('Order Id:', response.razorpay_order_id);
+                console.log('Signature:', response.razorpay_signature);
+                this.paymentId= responseFront.razorpay_payment_id;
+                if(responseFront.razorpay_payment_id!=null && responseFront.razorpay_payment_id !=''){
+                  console.log("inside if");
+                  
+                  this.bacservice.bookTicket(this.trainDetails, this.dataTransfer.getTravelDate(),this.passengersArray,this.noOfPassengers,this.selectedSeatType,amount).subscribe(
+                    (response: any) => {
+                      // Handle the response from the backend here
+                      console.log('data inserted successfully:', response);
+                      Swal.fire(
+                        'Sucess',
+                        'Ticket Booked  Sucessfully with Booking_ID ' + response.id,
+                        'success'
+                      );
+                    },
+                    (error: any) => {
+                      // Handle any errors here
+                      console.error('Error:', error);
+                      this.snack.open('Something went wrong!!', '', {
+                        duration: 3000,
+                      });
+                    }
+                  );
+                  this.router.navigateByUrl("/dashboard");
+              }
+            },
+            prefill: {
+              name: this.user.name,
+              email: this.user.email,
+              contact: this.user.phone
+            },
+            theme: {
+              color: '#F37254'
+            }
+          });}
+          this.rzp.open();
         },
-        (error) => {
+        (error: any) => {
           // Handle any errors here
           console.error('Error:', error);
           this.snack.open('Something went wrong!!', '', {
@@ -62,7 +176,6 @@ export class BookTicketComponent {
           });
         }
       );
-      this.router.navigateByUrl("/dashboard");
     }
   }
 
@@ -119,6 +232,5 @@ isPassengerAgeInvalid(index: number): boolean {
   }
   return false; // Field not yet touched, so not invalid
 }
-
 
 }
