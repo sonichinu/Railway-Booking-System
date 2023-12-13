@@ -1,113 +1,176 @@
 <p>book-ticket works!</p>
 
-
-
 <mat-card class="train-card">
-    <mat-card-header>
-      <mat-card-title>{{trainDetails[1]}}</mat-card-title>
-      <mat-card-subtitle> {{trainDetails[2] }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p><strong>Distance:</strong> {{trainDetails[6]- trainDetails[4] }} km</p>
-      <!-- Add more details here -->
-    </mat-card-content>
-    <mat-card-actions>
-      <!-- Add buttons or actions here -->
-    </mat-card-actions>
-  </mat-card>
+  <mat-card-header>
+    <mat-card-title>{{trainDetails[1]}}</mat-card-title>
+    <mat-card-subtitle> {{trainDetails[2] }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p><strong>Distance:</strong> {{trainDetails[6]- trainDetails[4] }} km</p>
+    <!-- Add more details here -->
+  </mat-card-content>
+  <mat-card-actions>
+    <!-- Add buttons or actions here -->
+  </mat-card-actions>
+</mat-card>
 
-
-
-  <div class="form-group">
-    <label>Seating Type:</label>
-    <div>
-        <input
+<div class="form-group2">
+  <label>Seating Type:</label>
+  <div>
+    <div *ngIf="!(trainDetails[11] > 0)">
+      <p class="warning-message">No Chair Car seats available.</p>
+    </div>
+    <div *ngIf="trainDetails[11] > 0">
+      <input
         type="radio"
         id="seat"
         name="seatType"
         value="seat"
         [(ngModel)]="selectedSeatType"
-        (change)="onSeatTypeChange('seat')"
-      />
-      Chair Car
+        (change)="onSeatTypeChange('seat')" />
+        Chair Car <span class="available-count"> Available Count {{ trainDetails[11] }}</span>
+    </div>
+    <div *ngIf="!(trainDetails[12] > 0)">
+      <p class="warning-message">No Sleeper seats available.</p>
+    </div>
+    <div *ngIf="trainDetails[12] > 0">
       <input
         type="radio"
         id="sleeper"
         name="seatType"
         value="sleeper"
         [(ngModel)]="selectedSeatType"
-        (change)="onSeatTypeChange('sleeper')"
-      />
-      Sleeper
+        (change)="onSeatTypeChange('sleeper')" />
+      Sleeper <span class="available-count"> Available Count {{ trainDetails[12] }}</span>
+    </div>
+    <div *ngIf="!(trainDetails[15] > 0)">
+      <p class="warning-message">No First Ac seats available.</p>
+    </div>
+    <div *ngIf="trainDetails[15] > 0">
       <input
         type="radio"
         id="firstAC"
         name="seatType"
         value="firstAC"
         [(ngModel)]="selectedSeatType"
-        (change)="onSeatTypeChange('firstAC')"
-      />
-      First AC
+        (change)="onSeatTypeChange('firstAC')" />
+      First AC <span class="available-count"> Available Count {{ trainDetails[15] }}</span>
+    </div>
+    <div *ngIf="!(trainDetails[14] > 0)">
+      <p class="warning-message">No Second Ac seats available.</p>
+    </div>
+    <div *ngIf="trainDetails[14] > 0">
       <input
         type="radio"
         id="secondAC"
         name="seatType"
         value="secondAC"
         [(ngModel)]="selectedSeatType"
-        (change)="onSeatTypeChange('secondAC')"
-      />
-      Second AC
+        (change)="onSeatTypeChange('secondAC')" />
+      Second AC <span class="available-count"> Available Count {{ trainDetails[14] }}</span>
+    </div>
+    <div *ngIf="!(trainDetails[13] > 0)">
+      <p class="warning-message">No Third Ac seats available.</p>
+    </div>
+    <div *ngIf="trainDetails[13] > 0">
       <input
         type="radio"
         id="thirdAC"
         name="seatType"
         value="thirdAC"
         [(ngModel)]="selectedSeatType"
-        (change)="onSeatTypeChange('thirdAC')"
-      />
-      Third AC
+        (change)="onSeatTypeChange('thirdAC')" />
+      Third AC <span class="available-count"> Available Count {{ trainDetails[13] }}</span>
     </div>
   </div>
+</div>
 
-
-  <div class="form-group">
+<!-- <div class="form-group2">
     <label for="noOfPassengers">No of Passengers</label>
     <input type="number" id="noOfPassengers" name="noOfPassengers" [(ngModel)]="noOfPassengers" class="form-control" placeholder="Number of Passengers" (input)="onUse()">
-  </div>
-  
-  <div *ngIf="noOfPassengers > 0">
-    <div *ngFor="let passenger of passengersArray; let i = index">
-      <div class="form-group">
-        <label for="passengerName{{ i+1 }}">Passenger Name </label>
-        <input type="text" id="passengerName{{ i+1 }}" name="passengerName{{ i+1 }}" [(ngModel)]="passengersArray[i].name" class="form-control" placeholder="Enter Passenger Name {{i+1}}" required (blur)="markNameAsTouched(i)">
-<mat-error *ngIf="isPassengerNameInvalid(i)">
-  Must not be empty
-</mat-error>
-      </div>
-      
-      <div class="form-group">
-        <label for="passengerAge{{ i+1 }}">Passenger Age</label>
-        <input type="number" id="passengerAge{{ i+1 }}" name="passengerAge{{ i+1 }}" [(ngModel)]="passengersArray[i].age" class="form-control" placeholder="Enter Passenger Age {{i+1}}" required (blur)="markAgeAsTouched(i)">
-<mat-error *ngIf="isPassengerAgeInvalid(i)">
-  Must not be empty and should be a valid age
-</mat-error>
-      </div>
-      <div class="form-group">
-          <label for="passengerGender{{ i+1 }}">Passenger Gender</label>
-          <div class="radio-group">
-              <label>
-                  <input type="radio" id="male{{ i+1 }}" name="passengerGender{{ i }}" [(ngModel)]="passengersArray[i].gender" [value]="'male'"> Male
-                </label>
-                <label>
-                    <input type="radio" id="female{{ i+1 }}" name="passengerGender{{ i }}" [(ngModel)]="passengersArray[i].gender" [value]="'female'"> Female
-                </label>
-                <label>
-                    <input type="radio" id="other{{ i+1 }}" name="passengerGender{{ i }}" [(ngModel)]="passengersArray[i].gender" [value]="'other'"> Other
-                </label>
-            </div>
-        </div>
+    <mat-error *ngIf="ifSeatsAvailable()">
+      Must not be empty
+    </mat-error>
+  </div> -->
+
+<!-- <div class="form-group2">
+    <label for="noOfPassengers">No of Passengers</label>
+    <input type="number" id="noOfPassengers" name="noOfPassengers" [(ngModel)]="noOfPassengers" 
+           class="form-control" placeholder="Number of Passengers" 
+           (input)="onUse()" 
+           #noOfPassengersInput="ngModel"
+           required
+           [class.invalid-input]="noOfPassengersInput.invalid && (noOfPassengersInput.dirty || noOfPassengersInput.touched)">
+    <mat-error *ngIf="noOfPassengersInput.invalid && (noOfPassengersInput.dirty || noOfPassengersInput.touched)">
+      Must not be empty
+    </mat-error>
+  </div> -->
+
+<div class="form-group2">
+  <label for="noOfPassengers">No of Passengers</label>
+  <input type="number" id="noOfPassengers" name="noOfPassengers"
+    [(ngModel)]="noOfPassengers"
+    class="form-control" placeholder="Number of Passengers" (input)="onUse()"
+    (blur)="markNoOfPassengersAsTouched()">
+  <mat-error *ngIf="isNoOfPassengersInvalid() && isNoOfPassengersTouched">
+    Must not be empty
+  </mat-error>
+</div>
+
+<div *ngIf="noOfPassengers > 0">
+<ng-container *ngIf="ifSeatsAvailable(); else noPassengersError">
+  <!-- <div *ngIf="noOfPassengers > 0"> -->
+  <div *ngFor="let passenger of passengersArray; let i = index">
+    <div class="form-group1">
+      <label for="passengerName{{ i+1 }}">Passenger Name </label>
+      <input type="text" id="passengerName{{ i+1 }}"
+        name="passengerName{{ i+1 }}" [(ngModel)]="passengersArray[i].name"
+        class="form-control" placeholder="Enter Passenger Name {{i+1}}" required
+        (blur)="markNameAsTouched(i)">
+      <mat-error *ngIf="isPassengerNameInvalid(i)">
+        Must not be empty
+      </mat-error>
     </div>
 
-  
-    <button class="btn btn-primary" (click)="sendDetails()" [disabled]="!isPassengerDataValid()">Send Details</button>
+    <div class="form-group1">
+      <label for="passengerAge{{ i+1 }}">Passenger Age</label>
+      <input type="number" id="passengerAge{{ i+1 }}"
+        name="passengerAge{{ i+1 }}" [(ngModel)]="passengersArray[i].age"
+        class="form-control" placeholder="Enter Passenger Age {{i+1}}" required
+        (blur)="markAgeAsTouched(i)">
+      <mat-error *ngIf="isPassengerAgeInvalid(i)">
+        Must not be empty and should be a valid age
+      </mat-error>
+    </div>
+    <div class="form-group">
+      <label for="passengerGender{{ i+1 }}">Passenger Gender</label>
+      <div class="radio-group">
+        <label>
+          <input type="radio" id="male{{ i+1 }}" name="passengerGender{{ i }}"
+            [(ngModel)]="passengersArray[i].gender" [value]="'male'"> Male
+        </label>
+        <label>
+          <input type="radio" id="female{{ i+1 }}" name="passengerGender{{ i }}"
+            [(ngModel)]="passengersArray[i].gender" [value]="'female'"> Female
+        </label>
+        <label>
+          <input type="radio" id="other{{ i+1 }}" name="passengerGender{{ i }}"
+            [(ngModel)]="passengersArray[i].gender" [value]="'other'"> Other
+        </label>
+      </div>
+    </div>
   </div>
+  <button class="btn btn-primary" (click)="sendDetails()"
+    [disabled]="!isPassengerDataValid()">Confirm Booking</button> 
+    </ng-container>
+    <ng-template #noPassengersError>
+      <mat-error>Not enough seats present</mat-error>
+    </ng-template>
+</div>
+
+
+
+<div *ngIf="loading" class="loading-spinner">
+  <!-- Replace with your loading spinner -->
+  <mat-spinner diameter="130"></mat-spinner>
+</div>

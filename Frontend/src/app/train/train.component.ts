@@ -23,6 +23,20 @@ export class TrainComponent implements OnInit{
   passengersArray: any[] = [];
   trainsForRoutes: any[] = [];
   snack: any;
+  fromStationsDropdown: { value: string, viewValue: string }[] = [
+    // Define your station options here as an array of objects
+    { value: 'Indore', viewValue: 'Indore' },
+    { value: 'Ujjain', viewValue: 'Ujjain' },
+    { value: 'Junagadh', viewValue: 'Junagadh' },
+    // Add more stations as needed
+  ];
+  toStationsDropdown: { value: string, viewValue: string }[] = [
+    // Define your station options here as an array of objects
+    { value: 'Udaipur', viewValue: 'Udaipur' },
+    { value: 'Ratlam', viewValue: 'Ratlam' },
+    { value: 'Nanded', viewValue: 'Nanded' },
+    // Add more stations as needed
+  ];
 
 
   constructor(private backservice: BackserviceService, private router:Router, private dataTransfer:DataTransferService) {}
@@ -31,8 +45,8 @@ export class TrainComponent implements OnInit{
   ngOnInit(): void {
     this.trainForm = new FormGroup({
       fromStation: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z ]*$")]),
-      toStation: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      travelDate: new FormControl('', [Validators.required, Validators.minLength(1)])
+      toStation: new FormControl('', [Validators.required, Validators.minLength(3) , Validators.pattern("^[a-zA-Z ]*$")]) ,
+      travelDate: new FormControl('', [Validators.required, this.dateValidator])
     })
    
   }
@@ -87,6 +101,18 @@ export class TrainComponent implements OnInit{
     this.dataTransfer.setTrainDetails(train,this.trainForm.value.travelDate);
     this.router.navigateByUrl('/dashboard/book-ticket');
 
+  }
+
+  // Custom Date VAlidator
+  dateValidator(control: FormControl): { [key: string]: any } | null {
+    const selectedDate = new Date(control.value);
+    const currentDate = new Date();
+
+    if (selectedDate < currentDate) {
+      return { 'invalidDate': true };
+    }
+
+    return null;
   }
 
 

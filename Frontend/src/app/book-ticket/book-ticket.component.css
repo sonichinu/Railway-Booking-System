@@ -5,3 +5,49 @@
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+
+  .loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+
+
+  .form-group {
+    margin-bottom: 30px;
+  }
+  .form-group2 {
+    margin-bottom: 12px;
+  }
+  
+  /* .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  } */
+  
+  .form-group input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  .form-group div {
+    margin-bottom: 5px;
+  }
+
+  .warning-message {
+    color: rgb(145, 34, 7); /* Red color for warning text */
+    font-weight: bold; /* Bold text for emphasis */
+    /* Add any other styles for the warning message */
+  }
+
+  .available-count {
+    font-weight: bold;
+    margin-left: 15px; /* Add space after the text */
+    color: green; /* Apply color to the available count */
+    /* Add any other styling for the available count text */
+  }

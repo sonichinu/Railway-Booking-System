@@ -25,7 +25,11 @@ public class TrainController {
     @GetMapping("/find/train/{from}/{to}/{travelDate}")
     public ResponseEntity<List<Object[]>> getTrainRoutes(@PathVariable String to, @PathVariable String from,@PathVariable String travelDate){
 //        System.out.println(to + from );
-        return ResponseEntity.ok(this.service.getTrainRoutes(from,to,travelDate));
+        String fromWithoutSpaces = from.replaceAll("\\s", "");
+        String capitalizedFrom = fromWithoutSpaces.substring(0, 1).toUpperCase() + fromWithoutSpaces.substring(1).toLowerCase();
+        String toWithoutSpaces = to.replaceAll("\\s", "");
+        String capitalizedTo = toWithoutSpaces.substring(0, 1).toUpperCase() + toWithoutSpaces.substring(1).toLowerCase();
+        return ResponseEntity.ok(this.service.getTrainRoutes(capitalizedFrom,capitalizedTo,travelDate));
     }
 
     @GetMapping("/find/train-routes/{id}")

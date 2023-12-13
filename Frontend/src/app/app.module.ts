@@ -48,10 +48,17 @@ import {
   FacebookLoginProvider
 } from "@abacritt/angularx-social-login";
 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+
 
 
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     TrainComponent,
@@ -77,6 +84,9 @@ import {
   ],
   imports: [
     DataTablesModule,
+    SocialLoginModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
     MatDatepickerModule,
     ReactiveFormsModule,
     BrowserModule,

@@ -96,10 +96,10 @@ public class BookingServiceImpl implements BookingService {
             dto.setFromStationArrivalTIme(fromArrivalTime);
             dto.setToStationArrivalTIme(toArrivalTime);
             this.pdfGenerator.generateTicketPDF(dto);
-//            this.emailService.sendEmail(userEmail,
-//                    "Your Booking Details",
-//                    "Please refer with your booking details",
-//                    "/home/rohit/"+date+".pdf");
+    //            this.emailService.sendEmail(userEmail,
+    //                    "Your Booking Details",
+    //                    "Please refer with your booking details",
+    //                    "/home/rohit/"+date+".pdf");
         return this.repo.save(book);
     }
 
@@ -131,6 +131,4 @@ public class BookingServiceImpl implements BookingService {
     public void deleteBooking(int id) {
         this.repo.delete(this.repo.findById(id).orElseThrow(()-> new ApiException("Booking not found")));
     }
-
-
 }

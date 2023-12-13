@@ -11,7 +11,7 @@ import { GoogleLoginProvider, SocialAuthService } from "@abacritt/angularx-socia
 })
 export class LoginComponent {
 
-  constructor(private router: Router, private snack:MatSnackBar, private login:LoginService){}
+  constructor(private router: Router, private snack:MatSnackBar, private login:LoginService, private authService: SocialAuthService){}
 
   loginData = {
     username:'',
@@ -66,24 +66,21 @@ export class LoginComponent {
   }
 
   toGoogleSignUp(){
-    // this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((data) => {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+    // .then((data) => {
     //   localStorage.setItem('google_auth', JSON.stringify(data));
     //   this.router.navigateByUrl('/dashboard').then();
     // });
+    .then(user => {
+      console.log(user);
+      // Handle user data or authentication here
+    })
+    .catch(error => {
+      console.log(error);
+      // Handle errors here
+    });
+
   }
-
-
-
-
-
-
-
-
-
-
-
-
-  
 
 }
 
